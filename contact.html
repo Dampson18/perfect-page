@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Perfect Page Freight Logistics</title>
+    <meta name="description" content="Get in touch with Perfect Page Freight Logistics. Call, email, or visit us. We're here to help with all your freight needs.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            gap: 16px;
+            padding: 20px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 16px;
+        }
+        
+        .contact-info-item:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+        
+        .contact-info-item .icon {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: rgba(59,130,246,0.08);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: var(--primary-light);
+            transition: var(--transition-base);
+        }
+        
+        .contact-info-item:hover .icon {
+            background: var(--gradient-accent);
+            color: var(--white);
+        }
+        
+        .contact-info-item h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 2px;
+        }
+        
+        .contact-info-item p,
+        .contact-info-item a {
+            font-size: 14px;
+            color: var(--gray-600);
+            text-decoration: none;
+        }
+        
+        .contact-info-item a:hover {
+            color: var(--primary-light);
+        }
+        
+        .contact-form-wrapper {
+            background: var(--white);
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .contact-form-wrapper .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .contact-form-wrapper label {
+            display: block;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+        
+        .contact-form-wrapper label .required {
+            color: var(--danger);
+        }
+        
+        .contact-form-wrapper input,
+        .contact-form-wrapper textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-primary);
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+            color: var(--gray-800);
+        }
+        
+        .contact-form-wrapper input:focus,
+        .contact-form-wrapper textarea:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+        
+        .contact-form-wrapper input.error,
+        .contact-form-wrapper textarea.error {
+            border-color: var(--danger);
+        }
+        
+        .contact-form-wrapper textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .contact-form-wrapper .error-message {
+            color: var(--danger);
+            font-size: 13px;
+            margin-top: 4px;
+            display: block;
+        }
+        
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--success);
+        }
+        
+        .success-message .icon {
+            font-size: 60px;
+            color: var(--success);
+            margin-bottom: 16px;
+        }
+        
+        .success-message h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+        
+        .success-message p {
+            color: var(--gray-600);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        
+        .success-message .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        .map-container {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-top: 40px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+        }
+        
+        .social-links-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+        
+        .social-links-row a {
+            width: 44px;
+            height: 44px;
+            background: var(--gray-100);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-600);
+            font-size: 18px;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .social-links-row a:hover {
+            background: var(--gradient-accent);
+            color: var(--white);
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .contact-form-wrapper {
+                padding: 24px 20px;
+            }
+            
+            .map-container iframe {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== LOADER WITH MOTTO ==================== -->
+    <div class="loader-overlay" id="loader">
+        <div class="loader-container">
+            <div class="loader-logo">
+                <div class="logo-icon">P</div>
+                <span class="logo-text">
+                    Perfect Page <span class="highlight">Freight</span>
+                </span>
+            </div>
+            <div class="loader-bars">
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+                <div class="loader-bar"></div>
+            </div>
+            <div class="loader-text">
+                Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+            </div>
+            <div class="loader-motto">
+                <div class="motto-line">
+                    <span class="divider"></span>
+                    <span class="motto-text">
+                        <span class="highlight">Reliable</span> Freight Forwarder, 
+                        <span class="highlight">Your Success</span> Our Priority
+                    </span>
+                    <span class="divider"></span>
+                </div>
+                <div class="motto-dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <svg style="position: absolute; width: 0; height: 0;">
+                <defs>
+                    <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#3B82F6" />
+                        <stop offset="100%" style="stop-color:#60A5FA" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </div>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><span>P</span></div>
+                    <span class="logo-text">
+                        Perfect Page <span class="highlight">Freight</span>
+                        <span class="logo-badge">Logistics</span>
+                    </span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="nav-link">
+                            Services <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
+                            <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
+                            <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
+                        <i class="fas fa-phone"></i>
+                        <span class="btn-text">Call Now</span>
+                    </a>
+                    <a href="quote.html" class="btn-nav btn-nav-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span class="btn-text">Get Quote</span>
+                    </a>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        
+        <!-- Page Hero -->
+        <section style="padding: 140px 0 70px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
+            <div class="container">
+                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Get In Touch</span>
+                    <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">Contact <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Us</span></h1>
+                    <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
+                        We're here to help. Reach out through any of the channels below.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Content -->
+        <section style="padding: 60px 0 80px;">
+            <div class="container">
+                <div class="contact-grid">
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h2 style="font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px;">Get in Touch</h2>
+                        <p style="color: var(--gray-600); margin-bottom: 24px; line-height: 1.8;">
+                            Have questions about our services? Need a quote? Our team is ready to assist you.
+                        </p>
+                        
+                        <div class="contact-info-item">
+                            <div class="icon"><i class="fas fa-phone"></i></div>
+                            <div>
+                                <h4>Call Us</h4>
+                                <a href="tel:+233245359395">+233 24 535 9395</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="icon"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <h4>Email Us</h4>
+                                <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="icon"><i class="fab fa-whatsapp"></i></div>
+                            <div>
+                                <h4>WhatsApp</h4>
+                                <a href="https://wa.me/233245359395" target="_blank">+233 24 535 9395</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-item">
+                            <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Accra, Ghana</p>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 20px;">
+                            <h4 style="font-size: 15px; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px;">Follow Us</h4>
+                            <div class="social-links-row">
+                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contact-form-wrapper">
+                        <h3 style="font-size: 22px; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px;">Send Us a Message</h3>
+                        
+                        <!-- The Form -->
+                        <form id="contactForm" action="https://formsubmit.co/kelvindampson17@gmail.com" method="POST">
+                            
+                            <!-- Required hidden fields -->
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_subject" value="New Contact Message - Perfect Page Freight">
+                            <input type="hidden" name="_autoresponse" value="Thank you for contacting Perfect Page Freight Logistics! We'll get back to you within 24 hours.">
+                            <!-- REMOVED _next to prevent redirect issues -->
+                            
+                            <div class="form-group">
+                                <label for="contactName">Your Name <span class="required">*</span></label>
+                                <input type="text" id="contactName" name="Name" placeholder="Enter your name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Email Address <span class="required">*</span></label>
+                                <input type="email" id="contactEmail" name="Email" placeholder="you@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactPhone">Phone Number</label>
+                                <input type="tel" id="contactPhone" name="Phone" placeholder="+233 XX XXX XXXX">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject">Subject <span class="required">*</span></label>
+                                <input type="text" id="contactSubject" name="Subject" placeholder="What is this about?" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage">Message <span class="required">*</span></label>
+                                <textarea id="contactMessage" name="Message" placeholder="Tell us how we can help..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                        
+                        <!-- Success Message (hidden initially) -->
+                        <div class="success-message" id="contactSuccessMessage">
+                            <div class="icon"><i class="fas fa-check-circle"></i></div>
+                            <h2>Message Sent!</h2>
+                            <p>Thank you for contacting Perfect Page Freight Logistics.<br>We'll get back to you within <strong>24 hours</strong>.</p>
+                            <div class="btn-group">
+                                <a href="index.html" class="btn btn-primary">
+                                    <i class="fas fa-home"></i> Return Home
+                                </a>
+                                <a href="contact.html" class="btn btn-secondary">
+                                    <i class="fas fa-envelope"></i> Send Another
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <!-- Google Maps -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63520.88783825872!2d-0.23081538318369564!3d5.603716827351065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9a7b6f2c1b3f%3A0x3b4d3c9a8b2f1e5d!2sAccra%2C%20Ghana!5e0!3m2!1sen!2s!4v1700000000000" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Perfect Page Freight Location"
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo.png" alt="Perfect Page Freight">
+                        <span>Perfect Page <span class="logo-highlight">Freight</span></span>
+                    </a>
+                    <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
+                    <p class="footer-description">
+                        Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="quote.html">Request Quote</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="sea-freight.html">Sea Freight</a></li>
+                        <li><a href="air-freight.html">Air Freight</a></li>
+                        <li><a href="land-transport.html">Land Transport</a></li>
+                        <li><a href="#">Customs Clearance</a></li>
+                        <li><a href="#">Warehousing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
+                        <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+    
+    <script src="js/script.js"></script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Perfect Page Freight Logistics",
+      "alternateName": "Perfect Page Freight",
+      "url": "https://www.perfectpagefreight.com",
+      "logo": "https://www.perfectpagefreight.com/images/logo.png",
+      "description": "Reliable freight forwarding services in Ghana. Sea freight, air freight, and land transport services.",
+      "email": "info@perfectpagefreight.com",
+      "telephone": "+233245359395",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+233245359395",
+        "contactType": "customer service",
+        "availableLanguage": ["English"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "GH",
+        "addressLocality": "Accra"
+      },
+      "sameAs": [
+        "https://www.facebook.com/perfectpagefreight",
+        "https://www.instagram.com/perfectpagefreight",
+        "https://www.linkedin.com/company/perfectpagefreight",
+        "https://www.tiktok.com/@perfectpagefreight"
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Perfect Page Freight Logistics",
+      "image": "https://www.perfectpagefreight.com/images/logo.png",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Accra",
+        "addressLocality": "Accra",
+        "addressRegion": "Greater Accra",
+        "addressCountry": "GH"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "5.6037",
+        "longitude": "-0.1870"
+      },
+      "telephone": "+233245359395",
+      "email": "info@perfectpagefreight.com",
+      "openingHours": "Mo-Fr 08:00-18:00",
+      "priceRange": "$$",
+      "paymentAccepted": "Cash, Credit Card, Bank Transfer"
+    }
+    </script>
+    
+    <!-- ======================================== -->
+    <!-- CONTACT FORM JAVASCRIPT - FIXED -->
+    <!-- ======================================== -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        const contactForm = document.getElementById('contactForm');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                let isValid = true;
+                const requiredFields = this.querySelectorAll('[required]');
+                
+                // Remove old errors
+                this.querySelectorAll('.error-message').forEach(el => el.remove());
+                this.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                        
+                        const errorMsg = document.createElement('span');
+                        errorMsg.className = 'error-message';
+                        errorMsg.textContent = 'This field is required';
+                        field.parentElement.appendChild(errorMsg);
+                    }
+                    
+                    if (field.type === 'email' && field.value.trim()) {
+                        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        if (!emailRegex.test(field.value.trim())) {
+                            isValid = false;
+                            field.classList.add('error');
+                            
+                            const errorMsg = document.createElement('span');
+                            errorMsg.className = 'error-message';
+                            errorMsg.textContent = 'Please enter a valid email address';
+                            field.parentElement.appendChild(errorMsg);
+                        }
+                    }
+                });
+                
+                if (!isValid) return;
+                
+                // Submit the form
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+                submitBtn.disabled = true;
+                
+                const formData = new FormData(this);
+                
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Hide form, show success message
+                        this.style.display = 'none';
+                        const successMsg = document.getElementById('contactSuccessMessage');
+                        if (successMsg) {
+                            successMsg.style.display = 'block';
+                        }
+                        this.reset();
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    submitBtn.innerHTML = '❌ Failed to Send';
+                    submitBtn.style.background = '#EF4444';
+                    
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalText;
+                        submitBtn.style.background = '';
+                        submitBtn.disabled = false;
+                    }, 3000);
+                    console.error('Error:', error);
+                });
+            });
+        }
+        
+    });
+    </script>
+    
+</body>
+</html>

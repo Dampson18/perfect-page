@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Perfect Page Freight Logistics</title>
+    <meta name="description" content="Learn about Perfect Page Freight Logistics, our mission, team, and experience in freight forwarding across Ghana.">
+    <meta name="keywords" content="about freight forwarding, logistics company Ghana, freight team, shipping experts">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.perfectpagefreight.com/about.html">
+    <meta property="og:title" content="About Us - Perfect Page Freight Logistics">
+    <meta property="og:description" content="Learn about Perfect Page Freight Logistics, our mission, team, and experience in freight forwarding.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .about-mission {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .mission-card {
+            background: var(--white);
+            padding: 30px 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        
+        .mission-card .icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+            color: var(--primary-light);
+            transition: var(--transition-base);
+        }
+        
+        .mission-card:hover .icon {
+            background: var(--gradient-accent);
+            color: var(--white);
+        }
+        
+        .mission-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+        }
+        
+        .mission-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .team-member {
+            background: var(--white);
+            padding: 30px 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .team-member:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        
+        .team-member .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--radius-full);
+            background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--gray-500);
+            font-weight: 600;
+            overflow: hidden;
+        }
+        
+        .team-member .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-member h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+        
+        .team-member .role {
+            font-size: 14px;
+            color: var(--primary-light);
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        
+        .team-member .bio {
+            font-size: 14px;
+            color: var(--gray-500);
+            line-height: 1.6;
+        }
+        
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stats-row .stat {
+            padding: 20px;
+        }
+        
+        .stats-row .stat .number {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--white);
+            display: block;
+        }
+        
+        .stats-row .stat .label {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .about-mission {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            .stats-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+            
+            .stats-row .stat .number {
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== LOADER WITH MOTTO ==================== -->
+<div class="loader-overlay" id="loader">
+    <div class="loader-container">
+        
+        <!-- Company Logo -->
+        <div class="loader-logo">
+            <div class="logo-icon">P</div>
+            <span class="logo-text">
+                Perfect Page <span class="highlight">Freight</span>
+            </span>
+        </div>
+        
+        <!-- Animated Bars -->
+        <div class="loader-bars">
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+            <div class="loader-bar"></div>
+        </div>
+        
+        <!-- Loading Text -->
+        <div class="loader-text">
+            Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+        </div>
+        
+        <!-- Motto Section -->
+        <div class="loader-motto">
+            <div class="motto-line">
+                <span class="divider"></span>
+                <span class="motto-text">
+                    <span class="highlight">Reliable</span> Freight Forwarder, 
+                    <span class="highlight">Your Success</span> Our Priority
+                </span>
+                <span class="divider"></span>
+            </div>
+            <div class="motto-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Hidden SVG for gradient -->
+        <svg style="position: absolute; width: 0; height: 0;">
+            <defs>
+                <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" style="stop-color:#3B82F6" />
+                    <stop offset="100%" style="stop-color:#60A5FA" />
+                </linearGradient>
+            </defs>
+        </svg>
+        
+    </div>
+</div>
+    
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"><span>P</span></div>
+                    <span class="logo-text">
+                        Perfect Page <span class="highlight">Freight</span>
+                        <span class="logo-badge">Logistics</span>
+                    </span>
+                </a>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="about.html" class="nav-link active">About Us</a></li>
+                    <li class="dropdown">
+                        <a href="services.html" class="nav-link">
+                            Services <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
+                            <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
+                            <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="nav-actions">
+                    <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
+                        <i class="fas fa-phone"></i>
+                        <span class="btn-text">Call Now</span>
+                    </a>
+                    <a href="quote.html" class="btn-nav btn-nav-primary">
+                        <i class="fas fa-paper-plane"></i>
+                        <span class="btn-text">Get Quote</span>
+                    </a>
+                    <div class="hamburger" id="hamburger">
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                        <span class="bar"></span>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main>
+        
+        <!-- Page Hero -->
+        <section style="padding: 140px 0 70px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
+            <div class="container">
+                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Who We Are</span>
+                    <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">About <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Perfect Page</span> Freight</h1>
+                    <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
+                        Reliable freight forwarding services across Ghana and worldwide. Your success is our priority.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Company Profile -->
+        <section style="padding: 60px 0;">
+            <div class="container">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto;">
+                    <div>
+                        <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Our Story</span>
+                        <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px;">Your Trusted Freight Partner Since <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">2015</span></h2>
+                        <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
+                            Perfect Page Freight Logistics is a premier freight forwarding company based in Ghana, committed to delivering exceptional logistics solutions across sea, air, and land transport. Since our founding, we have built a reputation for reliability, transparency, and customer-centric service.
+                        </p>
+                        <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
+                            Our motto, <strong>"Reliable Freight Forwarder, Your Success Our Priority,"</strong> reflects our dedication to ensuring that your cargo reaches its destination safely, on time, and within budget.
+                        </p>
+                        <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 24px;">
+                            With 15+ years of combined experience, we understand the complexities of international shipping and customs clearance. Our team is here to simplify the process and provide you with peace of mind.
+                        </p>
+                        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                            <a href="quote.html" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Get a Quote
+                            </a>
+                            <a href="contact.html" class="btn btn-secondary">
+                                <i class="fas fa-envelope"></i> Contact Us
+                            </a>
+                        </div>
+                    </div>
+                    <div style="border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl);">
+                        <img src="images/about-us.jpg" alt="About Perfect Page Freight" style="width: 100%; height: 400px; object-fit: cover;" loading="lazy">
+                        <div style="position: relative; margin-top: -60px; margin-left: 30px; background: var(--white); padding: 16px 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-lg); max-width: 200px;">
+                            <span style="display: block; font-size: 28px; font-weight: 800; color: var(--primary-light);">15+</span>
+                            <span style="font-size: 13px; color: var(--gray-500);">Years of Experience</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Mission, Vision, Values -->
+        <section style="padding: 60px 0; background: var(--off-white);">
+            <div class="container">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Our Purpose</span>
+                    <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-top: 8px;">Mission, Vision &amp; Values</h2>
+                </div>
+                <div class="about-mission">
+                    <div class="mission-card">
+                        <div class="icon"><i class="fas fa-bullseye"></i></div>
+                        <h3>Our Mission</h3>
+                        <p>To provide reliable, efficient, and cost-effective freight forwarding solutions that exceed our clients' expectations and contribute to their business success.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="icon"><i class="fas fa-eye"></i></div>
+                        <h3>Our Vision</h3>
+                        <p>To become the most trusted and preferred freight forwarding partner in Ghana and across West Africa, setting the standard for excellence in logistics.</p>
+                    </div>
+                    <div class="mission-card">
+                        <div class="icon"><i class="fas fa-heart"></i></div>
+                        <h3>Our Values</h3>
+                        <p>Integrity, reliability, customer focus, excellence, and innovation drive everything we do. We put our clients' success at the heart of our business.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Team Members -->
+        <section style="padding: 60px 0;">
+            <div class="container">
+                <div style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Meet The Team</span>
+                    <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-top: 8px;">Our Experts</h2>
+                    <p style="color: var(--gray-600); margin-top: 8px;">Dedicated professionals committed to your freight success.</p>
+                </div>
+                <div class="team-grid">
+                    <!-- Team Member 1 -->
+                    <div class="team-member">
+                        <div class="avatar">
+                            <img src="images/team-1.jpg" alt="John Doe - CEO" loading="lazy">
+                        </div>
+                        <h4>John Doe</h4>
+                        <div class="role">CEO &amp; Founder</div>
+                        <p class="bio">15+ years in logistics and supply chain management. Passionate about delivering excellence in freight forwarding.</p>
+                    </div>
+                    
+                    <!-- Team Member 2 -->
+                    <div class="team-member">
+                        <div class="avatar">
+                            <img src="images/team-2.jpg" alt="Jane Smith - Operations Manager" loading="lazy">
+                        </div>
+                        <h4>Jane Smith</h4>
+                        <div class="role">Operations Manager</div>
+                        <p class="bio">Expert in freight operations and customer relations. Ensures every shipment is handled with precision and care.</p>
+                    </div>
+                    
+                    <!-- Team Member 3 -->
+                    <div class="team-member">
+                        <div class="avatar">
+                            <img src="images/team-3.jpg" alt="Michael Johnson - Customs & Compliance" loading="lazy">
+                        </div>
+                        <h4>Michael Johnson</h4>
+                        <div class="role">Customs &amp; Compliance</div>
+                        <p class="bio">Specialist in customs clearance and regulatory compliance. Navigates complex documentation with ease.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Business Registration -->
+        <section style="padding: 60px 0; background: var(--off-white);">
+            <div class="container">
+                <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Registered &amp; Licensed</span>
+                    <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px;">Business Registration &amp; Certifications</h2>
+                    <p style="color: var(--gray-600); margin-bottom: 30px; line-height: 1.8;">
+                        Perfect Page Freight Logistics is a fully registered and compliant logistics company operating in Ghana. We adhere to all local and international shipping regulations.
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                        <div style="background: var(--white); padding: 24px 32px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); min-width: 150px;">
+                            <i class="fas fa-certificate" style="font-size: 32px; color: var(--primary-light); display: block; margin-bottom: 8px;"></i>
+                            <span style="font-weight: 600; color: var(--primary-dark);">Registered Company</span>
+                        </div>
+                        <div style="background: var(--white); padding: 24px 32px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); min-width: 150px;">
+                            <i class="fas fa-shield-alt" style="font-size: 32px; color: var(--primary-light); display: block; margin-bottom: 8px;"></i>
+                            <span style="font-weight: 600; color: var(--primary-dark);">Licensed &amp; Insured</span>
+                        </div>
+                        <div style="background: var(--white); padding: 24px 32px; border-radius: var(--radius-md); box-shadow: var(--shadow-md); min-width: 150px;">
+                            <i class="fas fa-handshake" style="font-size: 32px; color: var(--primary-light); display: block; margin-bottom: 8px;"></i>
+                            <span style="font-weight: 600; color: var(--primary-dark);">Trusted Partner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Stats / Years of Experience -->
+        <section style="padding: 60px 0; background: var(--gradient-primary); color: var(--white);">
+            <div class="container">
+                <div class="stats-row">
+                    <div class="stat">
+                        <span class="number" data-count="15">0</span>
+                        <span class="label">Years Experience</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" data-count="5000">0</span>
+                        <span class="label">Shipments Delivered</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" data-count="1200">0</span>
+                        <span class="label">Happy Clients</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number" data-count="100">0</span>
+                        <span class="label">Satisfaction Rate</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CTA -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Work With Us?</h2>
+                    <p>Let's discuss your freight needs and get a customized solution.</p>
+                    <a href="quote.html" class="btn btn-primary btn-large">
+                        <i class="fas fa-paper-plane"></i> Request a Quote
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+    
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo.png" alt="Perfect Page Freight">
+                        <span>Perfect Page <span class="logo-highlight">Freight</span></span>
+                    </a>
+                    <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
+                    <p class="footer-description">
+                        Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="quote.html">Request Quote</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="sea-freight.html">Sea Freight</a></li>
+                        <li><a href="air-freight.html">Air Freight</a></li>
+                        <li><a href="land-transport.html">Land Transport</a></li>
+                        <li><a href="#">Customs Clearance</a></li>
+                        <li><a href="#">Warehousing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact Us</h4>
+                    <ul class="footer-contact">
+                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
+                        <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
+                        <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
+       class="whatsapp-float" 
+       target="_blank"
+       aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us!</span>
+    </a>
+    
+    <script src="js/script.js"></script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Perfect Page Freight Logistics",
+  "alternateName": "Perfect Page Freight",
+  "url": "https://www.perfectpagefreight.com",
+  "logo": "https://www.perfectpagefreight.com/images/logo.png",
+  "description": "Reliable freight forwarding services in Ghana. Sea freight, air freight, and land transport services.",
+  "email": "info@perfectpagefreight.com",
+  "telephone": "+233245359395",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+233245359395",
+    "contactType": "customer service",
+    "availableLanguage": ["English"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "GH",
+    "addressLocality": "Accra"
+  },
+  "sameAs": [
+    "https://www.facebook.com/perfectpagefreight",
+    "https://www.instagram.com/perfectpagefreight",
+    "https://www.linkedin.com/company/perfectpagefreight",
+    "https://www.tiktok.com/@perfectpagefreight"
+  ]
+}
+</script>
+</body>
+</html>
