@@ -538,6 +538,48 @@
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-tooltip">Chat with us!</span>
     </a>
+
+<!-- ==================== CHATBOT ==================== -->
+
+<!-- Chatbot Toggle Button -->
+<button class="chatbot-toggle" id="chatbotToggle">
+    <span class="chat-icon"><i class="fas fa-comment-dots"></i></span>
+    <span class="close-icon"><i class="fas fa-times"></i></span>
+    <span class="badge">1</span>
+</button>
+
+<!-- Chatbot Window -->
+<div class="chatbot-window" id="chatbotWindow">
+    
+    <!-- Header -->
+    <div class="chatbot-header">
+        <div class="info">
+            <div class="avatar"><i class="fas fa-ship"></i></div>
+            <div class="title">
+                <h4>Perfect Page Freight</h4>
+                <span><span class="dot"></span> Online</span>
+            </div>
+        </div>
+        <button class="close-btn" id="chatbotClose"><i class="fas fa-times"></i></button>
+    </div>
+    
+    <!-- Messages -->
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    
+    <!-- Typing Indicator -->
+    <div class="typing" id="typingIndicator">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- Input -->
+    <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Type your message..." maxlength="200">
+        <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+    
+</div>
     
     <script src="js/script.js"></script>
     

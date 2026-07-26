@@ -532,3 +532,283 @@ window.addEventListener('resize', function() {
         }
     }, 250);
 });
+
+// ========================================
+// CHATBOT - COMPLETE
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // DOM Elements
+    const toggle = document.getElementById('chatbotToggle');
+    const window = document.getElementById('chatbotWindow');
+    const close = document.getElementById('chatbotClose');
+    const input = document.getElementById('chatbotInput');
+    const send = document.getElementById('chatbotSend');
+    const messages = document.getElementById('chatbotMessages');
+    const typing = document.getElementById('typingIndicator');
+    
+    let isOpen = false;
+    let isTyping = false;
+    
+    // ========================================
+    // KNOWLEDGE BASE
+    // ========================================
+    
+    const responses = {
+        // Greetings
+        'hello': 'Hello! 👋 Welcome to Perfect Page Freight Logistics. How can I help you today?',
+        'hi': 'Hi there! 👋 How can I assist you with your freight needs?',
+        'hey': 'Hey! Welcome to Perfect Page Freight Logistics. What can I do for you?',
+        'good morning': 'Good morning! ☀️ How can I help you with your freight needs today?',
+        'good afternoon': 'Good afternoon! How can I assist you with your logistics needs?',
+        'good evening': 'Good evening! How can I help you with your freight requirements?',
+        
+        // Services
+        'services': 'We offer three main services:\n\n🚢 Sea Freight - FCL & LCL container shipping worldwide\n✈️ Air Freight - Express cargo services globally\n🚛 Land Transport - Road freight across Ghana & West Africa',
+        'sea freight': '🚢 Sea Freight Services\n\nWe offer:\n• FCL (Full Container Load)\n• LCL (Less than Container Load)\n• Door-to-door delivery\n• Customs clearance\n• Global port coverage',
+        'air freight': '✈️ Air Freight Services\n\nWe offer:\n• Express air cargo\n• Door-to-door delivery\n• Airport-to-airport\n• Real-time tracking\n• Worldwide destinations',
+        'land transport': '🚛 Land Transport Services\n\nWe offer:\n• Full Truckload (FTL)\n• Less-than-Truckload (LTL)\n• West Africa regional transport\n• GPS tracking\n• Reliable delivery',
+        'customs': '📋 Customs Clearance\n\nWe handle:\n• Documentation preparation\n• Duty calculations\n• Compliance checks\n• Fast clearance\n\nOur experts ensure your cargo clears customs smoothly!',
+        
+        // Quotes
+        'quote': '📝 To get a quote, please visit our <a href="quote.html" style="color: #3B82F6; font-weight: 600;">Quote Request page</a> or provide your cargo details and we\'ll get back to you within 24 hours!',
+        'price': '💰 Pricing depends on:\n\n• Type of cargo\n• Weight & volume\n• Destination\n• Service level (air/sea/land)\n\nFor an accurate quote, please visit our <a href="quote.html" style="color: #3B82F6; font-weight: 600;">Quote page</a>!',
+        'cost': '💵 Shipping costs vary based on several factors. For a personalized quote, please visit our <a href="quote.html" style="color: #3B82F6; font-weight: 600;">Quote Request page</a>.',
+        
+        // Delivery
+        'delivery': '⏰ Estimated Delivery Times\n\n• ✈️ Air Freight: 2-5 days\n• 🚢 Sea Freight: 2-6 weeks\n• 🚛 Land Transport: 1-7 days\n\nExact times depend on the destination. Contact us for specific routes!',
+        'time': '⏱️ Delivery times vary by service:\n\n• Air: 2-5 business days\n• Sea: 2-6 weeks\n• Land: 1-7 days\n\nNeed something urgent? Air freight is your best option!',
+        
+        // Tracking
+        'track': '🔍 Shipment Tracking\n\nWe\'re currently developing a real-time tracking system! 🚀\n\nIn the meantime, you can:\n• Contact us directly\n• Email: info@perfectpagefreight.com\n• Call: +233 24 535 9395',
+        'tracking': '📦 Tracking Information\n\nOur tracking system is coming soon! Until then:\n\n📧 Email: info@perfectpagefreight.com\n📞 Call: +233 24 535 9395\n💬 WhatsApp: +233 24 535 9395',
+        
+        // Contact
+        'contact': '📞 Contact Us\n\n📧 Email: info@perfectpagefreight.com\n📱 Phone: +233 24 535 9395\n💬 WhatsApp: +233 24 535 9395\n📍 Location: Accra, Ghana\n\nWe\'re available Monday-Friday, 8am-6pm!',
+        'phone': '📱 You can reach us at:\n\n📞 +233 24 535 9395\n💬 WhatsApp: +233 24 535 9395\n\nWe\'re available Monday-Friday, 8am-6pm!',
+        'email': '📧 Email us at:\n\ninfo@perfectpagefreight.com\n\nWe\'ll respond within 24 hours!',
+        'location': '📍 Our Location\n\nWe\'re based in Accra, Ghana.\n\nVisit our <a href="contact.html" style="color: #3B82F6; font-weight: 600;">Contact page</a> for the Google Maps location!',
+        'whatsapp': '💬 Chat with us on WhatsApp:\n\n📱 +233 24 535 9395\n\nClick the WhatsApp button on our website to start chatting!',
+        
+        // About
+        'about': '🏢 About Perfect Page Freight\n\n• Founded in 2015\n• 15+ years experience\n• Trusted freight forwarder in Ghana\n• Sea, Air & Land services\n• Motto: "Your Success, Our Priority"\n\nVisit our <a href="about.html" style="color: #3B82F6; font-weight: 600;">About page</a> to learn more!',
+        'company': '🏢 Company Info\n\n• Name: Perfect Page Freight Logistics\n• Founded: 2015\n• Location: Accra, Ghana\n• Services: Sea, Air & Land Freight\n• Fully registered & licensed',
+        'experience': '💪 Experience\n\nWe have 15+ years of combined experience in freight forwarding and logistics.',
+        
+        // FAQ
+        'faq': '📋 FAQ Categories\n\n• General Questions\n• Shipping & Delivery\n• Customs & Documentation\n• Business Information\n\nVisit our <a href="faq.html" style="color: #3B82F6; font-weight: 600;">FAQ page</a> for detailed answers!',
+        
+        // Help
+        'help': 'How can I help you? Here are some things you can ask about:\n\n• Services (sea, air, land)\n• Quotes & pricing\n• Delivery times\n• Tracking\n• Customs clearance\n• Company information\n\nType your question or choose from the quick replies!',
+        'what can you do': 'I can help you with:\n\n• Service information\n• Quote requests\n• Delivery times\n• Tracking updates\n• Customs clearance\n• Company information\n\nJust ask me anything!',
+        
+        // Goodbye
+        'bye': 'Thank you for chatting with Perfect Page Freight Logistics! 🚢\n\n📧 info@perfectpagefreight.com\n📞 +233 24 535 9395\n\nHave a great day! 😊',
+        'goodbye': 'Goodbye! 👋 Feel free to reach out anytime for your freight needs.',
+        'thank you': 'You\'re welcome! 🎉 If you need anything else, just ask!',
+        'thanks': 'You\'re welcome! 😊 Is there anything else I can help with?',
+    };
+    
+    // Quick Replies
+    const quickReplies = [
+        { text: '🚢 Sea Freight', value: 'sea freight' },
+        { text: '✈️ Air Freight', value: 'air freight' },
+        { text: '🚛 Land Transport', value: 'land transport' },
+        { text: '💰 Get Quote', value: 'quote' },
+        { text: '⏰ Delivery Time', value: 'delivery' },
+        { text: '📞 Contact Us', value: 'contact' },
+    ];
+    
+    // ========================================
+    // FUNCTIONS
+    // ========================================
+    
+    function toggleChat() {
+        isOpen = !isOpen;
+        toggle.classList.toggle('active');
+        window.classList.toggle('active');
+        if (isOpen) {
+            input.focus();
+            setTimeout(scrollToBottom, 100);
+        }
+    }
+    
+    function closeChat() {
+        if (isOpen) toggleChat();
+    }
+    
+    function scrollToBottom() {
+        messages.scrollTop = messages.scrollHeight;
+    }
+    
+    function addMessage(text, sender) {
+        const div = document.createElement('div');
+        div.className = 'msg ' + sender;
+        
+        const time = new Date();
+        const timeStr = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        
+        let content = text;
+        if (sender === 'bot') {
+            content = text.replace(/\n/g, '<br>');
+        }
+        
+        div.innerHTML = content + '<span class="time">' + timeStr + '</span>';
+        messages.appendChild(div);
+        scrollToBottom();
+    }
+    
+    function showTyping() {
+        typing.classList.add('active');
+        isTyping = true;
+        scrollToBottom();
+    }
+    
+    function hideTyping() {
+        typing.classList.remove('active');
+        isTyping = false;
+    }
+    
+    function getResponse(input) {
+        const lower = input.toLowerCase().trim();
+        
+        // Exact match
+        for (const [key, value] of Object.entries(responses)) {
+            if (lower === key) return value;
+        }
+        
+        // Partial match
+        for (const [key, value] of Object.entries(responses)) {
+            if (lower.includes(key) || key.includes(lower)) return value;
+        }
+        
+        // Keyword match
+        const keywords = ['hello', 'hi', 'hey', 'service', 'sea', 'air', 'land', 'truck', 'ship', 'price', 'cost', 'quote', 'track', 'delivery', 'time', 'customs', 'contact', 'phone', 'email', 'location', 'about', 'company', 'experience', 'faq', 'help'];
+        for (const word of keywords) {
+            if (lower.includes(word)) {
+                const response = responses[word];
+                if (response) return response;
+            }
+        }
+        
+        return 'Thank you for your question! 👋\n\nIf you\'re asking about our services, quotes, delivery times, or customs clearance, please try rephrasing.\n\nOr contact us directly:\n📧 info@perfectpagefreight.com\n📞 +233 24 535 9395';
+    }
+    
+    function addQuickReplies() {
+        const div = document.createElement('div');
+        div.className = 'quick-replies';
+        
+        quickReplies.forEach(reply => {
+            const btn = document.createElement('button');
+            btn.className = 'qr-btn';
+            btn.textContent = reply.text;
+            btn.addEventListener('click', function() {
+                addMessage(reply.text, 'user');
+                showTyping();
+                setTimeout(() => {
+                    hideTyping();
+                    const response = getResponse(reply.value);
+                    addMessage(response, 'bot');
+                    
+                    // Add quote link button if quote was asked
+                    if (reply.value === 'quote') {
+                        setTimeout(() => {
+                            const linkDiv = document.createElement('div');
+                            linkDiv.className = 'quick-replies';
+                            const linkBtn = document.createElement('button');
+                            linkBtn.className = 'qr-btn';
+                            linkBtn.textContent = '📝 Go to Quote Page';
+                            linkBtn.style.background = '#3B82F6';
+                            linkBtn.style.color = '#fff';
+                            linkBtn.addEventListener('click', function() {
+                                window.location.href = 'quote.html';
+                            });
+                            linkDiv.appendChild(linkBtn);
+                            messages.appendChild(linkDiv);
+                            scrollToBottom();
+                        }, 300);
+                    }
+                }, 1000);
+            });
+            div.appendChild(btn);
+        });
+        
+        messages.appendChild(div);
+        scrollToBottom();
+    }
+    
+    function sendMessage() {
+        const text = input.value.trim();
+        if (!text || isTyping) return;
+        
+        addMessage(text, 'user');
+        input.value = '';
+        input.focus();
+        
+        showTyping();
+        setTimeout(() => {
+            hideTyping();
+            const response = getResponse(text);
+            addMessage(response, 'bot');
+            
+            // Show quick replies if user asked about services or help
+            const lower = text.toLowerCase();
+            if (lower.includes('service') || lower.includes('help') || lower.includes('what') || lower.includes('offer')) {
+                setTimeout(addQuickReplies, 300);
+            }
+        }, 1000 + Math.random() * 500);
+    }
+    
+    // ========================================
+    // INITIALIZE
+    // ========================================
+    
+    function initChatbot() {
+        addMessage('👋 Hello! Welcome to <strong>Perfect Page Freight Logistics</strong>.<br><br>I\'m here to help you with:<br>• Service information<br>• Quotes & pricing<br>• Delivery times<br>• Customs clearance<br>• Tracking updates<br><br>What can I help you with today? 😊', 'bot');
+        addQuickReplies();
+    }
+    
+    // ========================================
+    // EVENT LISTENERS
+    // ========================================
+    
+    toggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleChat();
+    });
+    
+    close.addEventListener('click', closeChat);
+    
+    send.addEventListener('click', sendMessage);
+    
+    input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            sendMessage();
+        }
+    });
+    
+    // Auto-open after 3 seconds (only once)
+    setTimeout(() => {
+        if (!sessionStorage.getItem('chatOpened')) {
+            toggleChat();
+            sessionStorage.setItem('chatOpened', 'true');
+        }
+    }, 3000);
+    
+    // Close on outside click
+    document.addEventListener('click', function(e) {
+        if (isOpen) {
+            const isInside = window.contains(e.target);
+            const isOnToggle = toggle.contains(e.target);
+            if (!isInside && !isOnToggle) {
+                closeChat();
+            }
+        }
+    });
+    
+    // Initialize
+    initChatbot();
+    
+});
