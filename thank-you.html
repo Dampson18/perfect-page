@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thank You - Perfect Page Freight Logistics</title>
+    <meta name="description" content="Thank you for contacting Perfect Page Freight Logistics. We'll get back to you within 24 hours.">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -80,10 +82,11 @@
         
         .thank-you-card .response-time {
             background: var(--off-white);
-            padding: 16px 20px;
+            padding: 14px 24px;
             border-radius: var(--radius-sm);
-            margin: 20px 0 30px;
+            margin: 20px 0 24px;
             display: inline-block;
+            border: 1px solid var(--gray-200);
         }
         
         .thank-you-card .response-time i {
@@ -96,11 +99,46 @@
             color: var(--gray-600);
         }
         
+        .thank-you-card .response-time strong {
+            color: var(--primary-dark);
+        }
+        
+        .thank-you-card .confirmation-note {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-bottom: 4px;
+        }
+        
         .thank-you-card .btn-group {
             display: flex;
             gap: 12px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 28px;
+        }
+        
+        .thank-you-card .help-line {
+            margin-top: 24px;
+            font-size: 13px;
+            color: var(--gray-400);
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-200);
+        }
+        
+        .thank-you-card .help-line i {
+            color: var(--primary-light);
+            margin-right: 6px;
+        }
+        
+        .thank-you-card .help-line a {
+            color: var(--primary-light);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition-base);
+        }
+        
+        .thank-you-card .help-line a:hover {
+            text-decoration: underline;
         }
         
         @media (max-width: 480px) {
@@ -111,42 +149,61 @@
             .thank-you-card h1 {
                 font-size: 26px;
             }
+            
+            .thank-you-card .icon-wrapper {
+                width: 64px;
+                height: 64px;
+            }
+            
+            .thank-you-card .icon-wrapper i {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="thank-you-page">
         <div class="thank-you-card">
+            
+            <!-- Success Icon -->
             <div class="icon-wrapper">
                 <i class="fas fa-check-circle"></i>
             </div>
             
-            <h1>Thank You!</h1>
+            <!-- Heading -->
+            <h1>Thank You</h1>
+            
+            <!-- Message -->
             <p>Your message has been sent successfully to</p>
             <p><strong class="highlight-text">Perfect Page Freight Logistics</strong></p>
             
+            <!-- Response Time -->
             <div class="response-time">
                 <i class="fas fa-clock"></i>
-                <span>We'll respond within <strong>24 hours</strong></span>
+                <span>We will respond within <strong>24 hours</strong></span>
             </div>
             
-            <p style="font-size: 14px; color: var(--gray-400);">
+            <!-- Confirmation Note -->
+            <p class="confirmation-note">
                 A confirmation has been sent to your email address.
             </p>
             
-            <div class="btn-group" style="margin-top: 28px;">
+            <!-- Action Buttons -->
+            <div class="btn-group">
                 <a href="index.html" class="btn btn-primary">
                     <i class="fas fa-home"></i> Return Home
                 </a>
                 <a href="quote.html" class="btn btn-secondary">
-                    <i class="fas fa-paper-plane"></i> Another Quote
+                    <i class="fas fa-file-invoice"></i> Another Quote
                 </a>
             </div>
             
-            <p style="margin-top: 24px; font-size: 13px; color: var(--gray-400);">
+            <!-- Help Line -->
+            <div class="help-line">
                 <i class="fas fa-phone"></i> Need immediate help? Call us at 
-                <a href="tel:+233245359395" style="color: var(--primary-light); font-weight: 600;">+233 24 535 9395</a>
-            </p>
+                <a href="tel:+233245359395">+233 24 535 9395</a>
+            </div>
+            
         </div>
     </div>
 </body>

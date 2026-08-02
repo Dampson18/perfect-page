@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Perfect Page Freight Logistics</title>
     <meta name="description" content="Get in touch with Perfect Page Freight Logistics. Call, email, or visit us. We're here to help with all your freight needs.">
+    <meta name="keywords" content="contact freight forwarder, logistics company Ghana, freight services Accra, shipping contact">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.perfectpagefreight.com/contact.html">
+    <meta property="og:title" content="Contact Us - Perfect Page Freight Logistics">
+    <meta property="og:description" content="Get in touch with Perfect Page Freight Logistics. We're here to help with all your freight needs.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -210,6 +217,26 @@
             transform: translateY(-3px) scale(1.1);
         }
         
+        /* Business Hours */
+        .hours-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+            margin-top: 8px;
+        }
+        
+        .hours-grid .day {
+            color: var(--gray-500);
+            font-size: 14px;
+        }
+        
+        .hours-grid .time {
+            color: var(--gray-700);
+            font-size: 14px;
+            font-weight: 500;
+            text-align: right;
+        }
+        
         @media (max-width: 768px) {
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -222,6 +249,10 @@
             
             .map-container iframe {
                 height: 250px;
+            }
+            
+            .hours-grid {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
@@ -332,10 +363,12 @@
         <section style="padding: 140px 0 70px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
             <div class="container">
                 <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Get In Touch</span>
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">
+                        <i class="fas fa-headset" style="margin-right: 6px;"></i> Get In Touch
+                    </span>
                     <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">Contact <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Us</span></h1>
                     <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
-                        We're here to help. Reach out through any of the channels below.
+                        Have questions about our freight services? Need a quote? Our team is ready to assist you — reach out through any channel below.
                     </p>
                 </div>
             </div>
@@ -348,9 +381,9 @@
                     
                     <!-- Contact Info -->
                     <div>
-                        <h2 style="font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px;">Get in Touch</h2>
+                        <h2 style="font-size: 24px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Get in Touch</h2>
                         <p style="color: var(--gray-600); margin-bottom: 24px; line-height: 1.8;">
-                            Have questions about our services? Need a quote? Our team is ready to assist you.
+                            We're here to help with all your freight and logistics needs. Choose the channel that works best for you.
                         </p>
                         
                         <div class="contact-info-item">
@@ -358,6 +391,7 @@
                             <div>
                                 <h4>Call Us</h4>
                                 <a href="tel:+233245359395">+233 24 535 9395</a>
+                                <p style="font-size: 12px; color: var(--gray-400);">Mon-Fri, 8am - 6pm</p>
                             </div>
                         </div>
                         
@@ -366,6 +400,7 @@
                             <div>
                                 <h4>Email Us</h4>
                                 <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a>
+                                <p style="font-size: 12px; color: var(--gray-400);">We respond within 24 hours</p>
                             </div>
                         </div>
                         
@@ -374,6 +409,7 @@
                             <div>
                                 <h4>WhatsApp</h4>
                                 <a href="https://wa.me/233245359395" target="_blank">+233 24 535 9395</a>
+                                <p style="font-size: 12px; color: var(--gray-400);">Instant chat support</p>
                             </div>
                         </div>
                         
@@ -382,6 +418,23 @@
                             <div>
                                 <h4>Location</h4>
                                 <p>Accra, Ghana</p>
+                                <p style="font-size: 12px; color: var(--gray-400);">Serving clients worldwide</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Business Hours -->
+                        <div style="margin-top: 24px; padding: 20px; background: var(--off-white); border-radius: var(--radius-md);">
+                            <h4 style="font-size: 15px; font-weight: 600; color: var(--primary-dark); margin-bottom: 8px;">
+                                <i class="fas fa-clock" style="color: var(--primary-light); margin-right: 8px;"></i>
+                                Business Hours
+                            </h4>
+                            <div class="hours-grid">
+                                <span class="day">Monday - Friday</span>
+                                <span class="time">8:00 AM - 6:00 PM</span>
+                                <span class="day">Saturday</span>
+                                <span class="time">9:00 AM - 2:00 PM</span>
+                                <span class="day">Sunday</span>
+                                <span class="time">Closed</span>
                             </div>
                         </div>
                         
@@ -399,7 +452,8 @@
                     
                     <!-- Contact Form -->
                     <div class="contact-form-wrapper">
-                        <h3 style="font-size: 22px; font-weight: 700; color: var(--primary-dark); margin-bottom: 20px;">Send Us a Message</h3>
+                        <h3 style="font-size: 22px; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px;">Send Us a Message</h3>
+                        <p style="color: var(--gray-500); font-size: 14px; margin-bottom: 20px;">Fill out the form and we'll get back to you within 24 hours.</p>
                         
                         <!-- The Form -->
                         <form id="contactForm" action="https://formsubmit.co/kelvindampson17@gmail.com" method="POST">
@@ -409,11 +463,10 @@
                             <input type="hidden" name="_template" value="table">
                             <input type="hidden" name="_subject" value="New Contact Message - Perfect Page Freight">
                             <input type="hidden" name="_autoresponse" value="Thank you for contacting Perfect Page Freight Logistics! We'll get back to you within 24 hours.">
-                            <!-- REMOVED _next to prevent redirect issues -->
                             
                             <div class="form-group">
                                 <label for="contactName">Your Name <span class="required">*</span></label>
-                                <input type="text" id="contactName" name="Name" placeholder="Enter your name" required>
+                                <input type="text" id="contactName" name="Name" placeholder="Enter your full name" required>
                             </div>
                             <div class="form-group">
                                 <label for="contactEmail">Email Address <span class="required">*</span></label>
@@ -434,6 +487,9 @@
                             <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
                                 <i class="fas fa-paper-plane"></i> Send Message
                             </button>
+                            <p style="font-size: 12px; color: var(--gray-400); text-align: center; margin-top: 12px;">
+                                <i class="fas fa-lock" style="margin-right: 4px;"></i> Your information is secure and confidential.
+                            </p>
                         </form>
                         
                         <!-- Success Message (hidden initially) -->
@@ -456,6 +512,12 @@
                 
                 <!-- Google Maps -->
                 <div class="map-container">
+                    <div style="padding: 12px 20px; background: var(--white); border-bottom: 1px solid var(--gray-200); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                        <span style="font-weight: 600; color: var(--primary-dark);">
+                            <i class="fas fa-map-pin" style="color: var(--primary-light);"></i> Find Us
+                        </span>
+                        <span style="font-size: 13px; color: var(--gray-500);">Accra, Ghana</span>
+                    </div>
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63520.88783825872!2d-0.23081538318369564!3d5.603716827351065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9a7b6f2c1b3f%3A0x3b4d3c9a8b2f1e5d!2sAccra%2C%20Ghana!5e0!3m2!1sen!2s!4v1700000000000" 
                         allowfullscreen="" 
@@ -463,6 +525,27 @@
                         referrerpolicy="no-referrer-when-downgrade"
                         title="Perfect Page Freight Location"
                     ></iframe>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Quick Contact CTA -->
+        <section style="padding: 60px 0; background: var(--off-white);">
+            <div class="container">
+                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Need Immediate Help?</span>
+                    <h2 style="font-size: 28px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">Get a <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Quick Response</span></h2>
+                    <p style="color: var(--gray-600); margin-bottom: 24px; line-height: 1.8;">
+                        Our team is ready to assist you. Reach out and we'll respond within 24 hours.
+                    </p>
+                    <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                        <a href="tel:+233245359395" class="btn btn-primary">
+                            <i class="fas fa-phone"></i> Call Now
+                        </a>
+                        <a href="https://wa.me/233245359395" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> WhatsApp Us
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -539,47 +622,33 @@
         <span class="whatsapp-tooltip">Chat with us!</span>
     </a>
 
-<!-- ==================== CHATBOT ==================== -->
+    <!-- ==================== CHATBOT ==================== -->
+    <button class="chatbot-toggle" id="chatbotToggle">
+        <span class="chat-icon"><i class="fas fa-comment-dots"></i></span>
+        <span class="close-icon"><i class="fas fa-times"></i></span>
+        <span class="badge">1</span>
+    </button>
 
-<!-- Chatbot Toggle Button -->
-<button class="chatbot-toggle" id="chatbotToggle">
-    <span class="chat-icon"><i class="fas fa-comment-dots"></i></span>
-    <span class="close-icon"><i class="fas fa-times"></i></span>
-    <span class="badge">1</span>
-</button>
-
-<!-- Chatbot Window -->
-<div class="chatbot-window" id="chatbotWindow">
-    
-    <!-- Header -->
-    <div class="chatbot-header">
-        <div class="info">
-            <div class="avatar"><i class="fas fa-ship"></i></div>
-            <div class="title">
-                <h4>Perfect Page Freight</h4>
-                <span><span class="dot"></span> Online</span>
+    <div class="chatbot-window" id="chatbotWindow">
+        <div class="chatbot-header">
+            <div class="info">
+                <div class="avatar"><i class="fas fa-ship"></i></div>
+                <div class="title">
+                    <h4>Perfect Page Freight</h4>
+                    <span><span class="dot"></span> Online</span>
+                </div>
             </div>
+            <button class="close-btn" id="chatbotClose"><i class="fas fa-times"></i></button>
         </div>
-        <button class="close-btn" id="chatbotClose"><i class="fas fa-times"></i></button>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <div class="typing" id="typingIndicator">
+            <span></span><span></span><span></span>
+        </div>
+        <div class="chatbot-input">
+            <input type="text" id="chatbotInput" placeholder="Type your message..." maxlength="200">
+            <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+        </div>
     </div>
-    
-    <!-- Messages -->
-    <div class="chatbot-messages" id="chatbotMessages"></div>
-    
-    <!-- Typing Indicator -->
-    <div class="typing" id="typingIndicator">
-        <span></span>
-        <span></span>
-        <span></span>
-    </div>
-    
-    <!-- Input -->
-    <div class="chatbot-input">
-        <input type="text" id="chatbotInput" placeholder="Type your message..." maxlength="200">
-        <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
-    </div>
-    
-</div>
     
     <script src="js/script.js"></script>
     
@@ -633,7 +702,7 @@
       },
       "telephone": "+233245359395",
       "email": "info@perfectpagefreight.com",
-      "openingHours": "Mo-Fr 08:00-18:00",
+      "openingHours": "Mo-Fr 08:00-18:00, Sa 09:00-14:00",
       "priceRange": "$$",
       "paymentAccepted": "Cash, Credit Card, Bank Transfer"
     }

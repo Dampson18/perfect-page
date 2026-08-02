@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ - Perfect Page Freight Logistics</title>
     <meta name="description" content="Frequently asked questions about freight forwarding, customs, delivery times, and shipping prices. Get answers to your logistics questions.">
+    <meta name="keywords" content="freight FAQ, shipping questions, customs clearance FAQ, freight forwarding Ghana">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.perfectpagefreight.com/faq.html">
+    <meta property="og:title" content="FAQ - Perfect Page Freight Logistics">
+    <meta property="og:description" content="Frequently asked questions about freight forwarding, customs, delivery times, and shipping prices.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +20,57 @@
     <link rel="stylesheet" href="css/styles.css">
     
     <style>
+        .faq-search {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+        
+        .faq-search input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--radius-md);
+            font-size: 16px;
+            font-family: var(--font-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--white);
+            color: var(--gray-800);
+        }
+        
+        .faq-search input:focus {
+            outline: none;
+            border-color: var(--primary-light);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+        }
+        
+        .faq-search .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--gray-400);
+            font-size: 18px;
+        }
+        
+        .faq-search .clear-btn {
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--gray-400);
+            cursor: pointer;
+            font-size: 18px;
+            display: none;
+            padding: 4px;
+        }
+        
+        .faq-search .clear-btn.visible {
+            display: block;
+        }
+        
         .faq-item {
             background: var(--white);
             border-radius: var(--radius-md);
@@ -29,6 +87,10 @@
         .faq-item.active {
             border-color: var(--primary-light);
             box-shadow: 0 4px 20px rgba(59, 130, 246, 0.08);
+        }
+        
+        .faq-item.hidden {
+            display: none;
         }
         
         .faq-question {
@@ -97,6 +159,29 @@
             margin-bottom: 0;
         }
         
+        .faq-answer .content ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .faq-answer .content ul li {
+            list-style: disc;
+            margin-bottom: 4px;
+        }
+        
+        .faq-category-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-light);
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
         @media (max-width: 768px) {
             .faq-question {
                 padding: 16px 20px;
@@ -110,24 +195,38 @@
                 padding: 0 20px 20px;
                 font-size: 15px;
             }
+            
+            .faq-search input {
+                font-size: 14px;
+                padding: 12px 16px 12px 44px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .faq-question h3 {
+                font-size: 14px;
+            }
+            
+            .faq-question .icon {
+                width: 30px;
+                height: 30px;
+                min-width: 30px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
 <body>
-   
+
 <!-- ==================== LOADER WITH MOTTO ==================== -->
 <div class="loader-overlay" id="loader">
     <div class="loader-container">
-        
-        <!-- Company Logo -->
         <div class="loader-logo">
             <div class="logo-icon">P</div>
             <span class="logo-text">
                 Perfect Page <span class="highlight">Freight</span>
             </span>
         </div>
-        
-        <!-- Animated Bars -->
         <div class="loader-bars">
             <div class="loader-bar"></div>
             <div class="loader-bar"></div>
@@ -138,13 +237,9 @@
             <div class="loader-bar"></div>
             <div class="loader-bar"></div>
         </div>
-        
-        <!-- Loading Text -->
         <div class="loader-text">
             Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span>
         </div>
-        
-        <!-- Motto Section -->
         <div class="loader-motto">
             <div class="motto-line">
                 <span class="divider"></span>
@@ -162,8 +257,6 @@
                 <span></span>
             </div>
         </div>
-        
-        <!-- Hidden SVG for gradient -->
         <svg style="position: absolute; width: 0; height: 0;">
             <defs>
                 <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -172,343 +265,417 @@
                 </linearGradient>
             </defs>
         </svg>
-        
     </div>
 </div>
-    <!-- ==================== HEADER ==================== -->
-    <header class="header" id="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon"><span>P</span></div>
-                    <span class="logo-text">
-                        Perfect Page <span class="highlight">Freight</span>
-                        <span class="logo-badge">Logistics</span>
-                    </span>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><span>P</span></div>
+                <span class="logo-text">
+                    Perfect Page <span class="highlight">Freight</span>
+                    <span class="logo-badge">Logistics</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="dropdown">
+                    <a href="services.html" class="nav-link">
+                        Services <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
+                        <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
+                        <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="faq.html" class="nav-link active">FAQ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
+                    <i class="fas fa-phone"></i>
+                    <span class="btn-text">Call Now</span>
                 </a>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="services.html" class="nav-link">
-                            Services <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
-                            <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
-                            <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="faq.html" class="nav-link active">FAQ</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
-                        <i class="fas fa-phone"></i>
-                        <span class="btn-text">Call Now</span>
-                    </a>
-                    <a href="quote.html" class="btn-nav btn-nav-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        <span class="btn-text">Get Quote</span>
-                    </a>
-                    <div class="hamburger" id="hamburger">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
+                <a href="quote.html" class="btn-nav btn-nav-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    <span class="btn-text">Get Quote</span>
+                </a>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main>
     
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <main>
-        
-        <!-- Page Hero -->
-        <section style="padding: 140px 0 70px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
-            <div class="container">
-                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Got Questions?</span>
-                    <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">Frequently Asked <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Questions</span></h1>
-                    <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
-                        Find answers to common questions about our freight services, customs, delivery times, and shipping prices.
-                    </p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- FAQ List -->
-        <section style="padding: 60px 0 80px;">
-            <div class="container">
-                <div style="max-width: 850px; margin: 0 auto;">
-                    
-                    <!-- FAQ Category: General -->
-                    <div style="margin-bottom: 40px;">
-                        <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-info-circle" style="color: var(--primary-light);"></i>
-                            General Questions
-                        </h2>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>What freight services do you offer?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>We offer comprehensive freight forwarding services including:</p>
-                                    <ul style="padding-left: 20px; margin-bottom: 8px;">
-                                        <li style="list-style: disc; margin-bottom: 4px;"><strong>Sea Freight</strong> - FCL and LCL container shipping worldwide</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;"><strong>Air Freight</strong> - Express cargo services globally</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;"><strong>Land Transport</strong> - Road freight across Ghana and West Africa</li>
-                                        <li style="list-style: disc;"><strong>Customs Clearance</strong> - Expert documentation and compliance</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>How long has Perfect Page Freight been in business?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>Perfect Page Freight Logistics has been providing reliable freight forwarding services since 2015, giving us over 15 years of combined industry experience.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Category: Shipping & Delivery -->
-                    <div style="margin-bottom: 40px;">
-                        <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-truck" style="color: var(--primary-light);"></i>
-                            Shipping & Delivery
-                        </h2>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>What are your typical delivery times?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>Delivery times vary by service type:</p>
-                                    <ul style="padding-left: 20px;">
-                                        <li style="list-style: disc; margin-bottom: 4px;"><strong>Air Freight:</strong> 2-5 business days (depending on destination)</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;"><strong>Sea Freight:</strong> 2-6 weeks (depending on route)</li>
-                                        <li style="list-style: disc;"><strong>Land Transport:</strong> 1-7 days (depending on distance)</li>
-                                    </ul>
-                                    <p style="margin-top: 8px;">Contact us for specific transit times to your destination.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>How much does shipping cost?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>Shipping costs depend on several factors including:</p>
-                                    <ul style="padding-left: 20px;">
-                                        <li style="list-style: disc; margin-bottom: 4px;">Type of cargo and weight</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;">Destination and shipping route</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;">Service type (air, sea, or land)</li>
-                                        <li style="list-style: disc;">Additional services needed (customs, insurance, etc.)</li>
-                                    </ul>
-                                    <p style="margin-top: 8px;"><a href="quote.html" style="color: var(--primary-light); font-weight: 600;">Request a free quote</a> for an accurate estimate.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Category: Customs -->
-                    <div style="margin-bottom: 40px;">
-                        <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-passport" style="color: var(--primary-light);"></i>
-                            Customs & Documentation
-                        </h2>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>Do you handle customs clearance?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>Yes! We provide full customs clearance services. Our team of experts handles all documentation, duty calculations, and compliance requirements to ensure your cargo clears customs smoothly and efficiently.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>What documents do I need for shipping?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>Required documents typically include:</p>
-                                    <ul style="padding-left: 20px;">
-                                        <li style="list-style: disc; margin-bottom: 4px;">Commercial Invoice</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;">Packing List</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;">Bill of Lading (sea) or Air Waybill (air)</li>
-                                        <li style="list-style: disc; margin-bottom: 4px;">Certificate of Origin (if applicable)</li>
-                                        <li style="list-style: disc;">Import/Export licenses (if applicable)</li>
-                                    </ul>
-                                    <p style="margin-top: 8px;">Our team will guide you through all documentation requirements.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- FAQ Category: Business -->
-                    <div>
-                        <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-building" style="color: var(--primary-light);"></i>
-                            Business Information
-                        </h2>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>Is Perfect Page Freight Logistics a registered company?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>Yes, Perfect Page Freight Logistics is a fully registered and licensed freight forwarding company operating in Ghana. We comply with all local and international shipping regulations.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="faq-item">
-                            <div class="faq-question" onclick="toggleFAQ(this)">
-                                <h3>How can I track my shipment?</h3>
-                                <span class="icon"><i class="fas fa-chevron-down"></i></span>
-                            </div>
-                            <div class="faq-answer">
-                                <div class="content">
-                                    <p>We're currently developing a real-time tracking system to provide you with full visibility of your shipments. In the meantime, our team provides regular updates on your cargo's status via phone or email.</p>
-                                    <p style="margin-top: 8px;"><strong>Tracking coming soon!</strong> We'll notify you when the system is live.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <!-- Still Have Questions? -->
-        <section style="padding: 60px 0; background: var(--off-white);">
-            <div class="container">
-                <div style="text-align: center; max-width: 600px; margin: 0 auto;">
-                    <i class="fas fa-comments" style="font-size: 40px; color: var(--primary-light); margin-bottom: 16px;"></i>
-                    <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px;">Still Have Questions?</h2>
-                    <p style="color: var(--gray-600); margin-bottom: 24px; line-height: 1.8;">
-                        Didn't find what you're looking for? Our team is here to help. Reach out to us directly.
-                    </p>
-                    <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
-                        <a href="contact.html" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i> Contact Us
-                        </a>
-                        <a href="https://wa.me/233245359395" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp Us
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-    </main>
-    
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer" id="footer">
+    <!-- Page Hero -->
+    <section style="padding: 140px 0 60px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="footer-logo">
-                        <img src="images/logo.png" alt="Perfect Page Freight">
-                        <span>Perfect Page <span class="logo-highlight">Freight</span></span>
-                    </a>
-                    <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
-                    <p class="footer-description">
-                        Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">
+                    <i class="fas fa-question-circle" style="margin-right: 6px;"></i> Got Questions?
+                </span>
+                <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">Frequently Asked <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Questions</span></h1>
+                <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
+                    Find answers to common questions about our freight services, customs, delivery times, and shipping prices.
+                </p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Search -->
+    <section style="padding: 0 0 60px;">
+        <div class="container">
+            <div class="faq-search">
+                <span class="search-icon"><i class="fas fa-search"></i></span>
+                <input type="text" id="faqSearchInput" placeholder="Search for questions..." onkeyup="searchFAQ()">
+                <button class="clear-btn" id="clearSearchBtn" onclick="clearSearch()"><i class="fas fa-times-circle"></i></button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ List -->
+    <section style="padding: 0 0 80px;">
+        <div class="container">
+            <div style="max-width: 850px; margin: 0 auto;">
+                
+                <!-- Category: General -->
+                <div style="margin-bottom: 40px;">
+                    <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+                        <span class="faq-category-icon"><i class="fas fa-info-circle"></i></span>
+                        General Questions
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What freight services do you offer?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>We offer comprehensive freight forwarding services including:</p>
+                                <ul>
+                                    <li><strong>Sea Freight</strong> — FCL and LCL container shipping worldwide</li>
+                                    <li><strong>Air Freight</strong> — Express cargo services globally</li>
+                                    <li><strong>Land Transport</strong> — Road freight across Ghana and West Africa</li>
+                                    <li><strong>Customs Clearance</strong> — Expert documentation and compliance</li>
+                                    <li><strong>Warehousing</strong> — Secure storage solutions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How long has Perfect Page Freight been in business?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Perfect Page Freight Logistics has been providing reliable freight forwarding services since 2015, giving us over <strong>15 years of combined industry experience</strong>. We've built a strong reputation for reliability and customer service.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Is Perfect Page Freight a registered company?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Yes! Perfect Page Freight Logistics is a <strong>fully registered and licensed</strong> freight forwarding company operating in Ghana. We comply with all local and international shipping regulations and are fully insured.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Our Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="quote.html">Request Quote</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                    </ul>
+                
+                <!-- Category: Shipping & Delivery -->
+                <div style="margin-bottom: 40px;">
+                    <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+                        <span class="faq-category-icon"><i class="fas fa-shipping-fast"></i></span>
+                        Shipping &amp; Delivery
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What are your typical delivery times?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Delivery times vary by service type:</p>
+                                <ul>
+                                    <li><strong>Air Freight:</strong> 2-5 business days (depending on destination)</li>
+                                    <li><strong>Sea Freight:</strong> 2-6 weeks (depending on route)</li>
+                                    <li><strong>Land Transport:</strong> 1-7 days (depending on distance)</li>
+                                </ul>
+                                <p><a href="contact.html" style="color: var(--primary-light); font-weight: 600;">Contact us</a> for specific transit times to your destination.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How much does shipping cost?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Shipping costs depend on several factors including:</p>
+                                <ul>
+                                    <li>Type of cargo and weight</li>
+                                    <li>Destination and shipping route</li>
+                                    <li>Service type (air, sea, or land)</li>
+                                    <li>Additional services needed (customs, insurance, etc.)</li>
+                                </ul>
+                                <p><a href="quote.html" style="color: var(--primary-light); font-weight: 600;">Request a free quote</a> for an accurate estimate.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Do you offer door-to-door delivery?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Yes! We offer <strong>door-to-door delivery</strong> for all our services. This means we handle everything from pickup at your location to final delivery at your destination. You don't need to worry about any part of the shipping process.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="sea-freight.html">Sea Freight</a></li>
-                        <li><a href="air-freight.html">Air Freight</a></li>
-                        <li><a href="land-transport.html">Land Transport</a></li>
-                        <li><a href="#">Customs Clearance</a></li>
-                        <li><a href="#">Warehousing</a></li>
-                    </ul>
+                
+                <!-- Category: Customs -->
+                <div style="margin-bottom: 40px;">
+                    <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+                        <span class="faq-category-icon"><i class="fas fa-passport"></i></span>
+                        Customs &amp; Documentation
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Do you handle customs clearance?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p><strong>Yes!</strong> We provide full customs clearance services. Our team of experts handles:</p>
+                                <ul>
+                                    <li>Documentation preparation</li>
+                                    <li>Duty calculations</li>
+                                    <li>Compliance requirements</li>
+                                    <li>Fast and efficient clearance</li>
+                                </ul>
+                                <p>We ensure your cargo clears customs smoothly and without delays.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What documents do I need for shipping?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Required documents typically include:</p>
+                                <ul>
+                                    <li><strong>Commercial Invoice</strong> — Details of the goods being shipped</li>
+                                    <li><strong>Packing List</strong> — Itemized list of cargo contents</li>
+                                    <li><strong>Bill of Lading</strong> (sea) or <strong>Air Waybill</strong> (air)</li>
+                                    <li><strong>Certificate of Origin</strong> (if applicable)</li>
+                                    <li><strong>Import/Export licenses</strong> (if applicable)</li>
+                                </ul>
+                                <p>Our team will guide you through all documentation requirements.</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
-                        <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
-                    </ul>
+                
+                <!-- Category: Business -->
+                <div style="margin-bottom: 40px;">
+                    <h2 style="font-size: 20px; font-weight: 700; color: var(--primary-dark); margin-bottom: 16px; display: flex; align-items: center; gap: 12px;">
+                        <span class="faq-category-icon"><i class="fas fa-building"></i></span>
+                        Business Information
+                    </h2>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How can I track my shipment?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>We're currently developing a <strong>real-time tracking system</strong> to provide you with full visibility of your shipments. 🚀</p>
+                                <p>In the meantime, our team provides regular updates on your cargo's status via phone, email, or WhatsApp.</p>
+                                <p><strong>Tracking coming soon!</strong> We'll notify you when the system is live.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>What areas do you serve?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>We serve clients <strong>worldwide</strong> with a special focus on:</p>
+                                <ul>
+                                    <li><strong>Ghana</strong> — Our home base with extensive local knowledge</li>
+                                    <li><strong>West Africa</strong> — Regional land transport and shipping</li>
+                                    <li><strong>Global</strong> — Sea and air freight to all major destinations</li>
+                                </ul>
+                                <p>No matter where you're shipping, we can help.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>How do I get started with Perfect Page Freight?</h3>
+                            <span class="icon"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="content">
+                                <p>Getting started is easy:</p>
+                                <ul>
+                                    <li><strong>Step 1:</strong> <a href="contact.html" style="color: var(--primary-light); font-weight: 600;">Contact us</a> with your shipping needs</li>
+                                    <li><strong>Step 2:</strong> We'll provide a free, no-obligation quote</li>
+                                    <li><strong>Step 3:</strong> Book your shipment and we'll handle the rest</li>
+                                </ul>
+                                <p><a href="quote.html" style="color: var(--primary-light); font-weight: 600;">Request a quote today</a> to get started!</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                
+                <!-- No Results Message -->
+                <div id="noResults" style="display: none; text-align: center; padding: 40px 20px;">
+                    <i class="fas fa-search" style="font-size: 40px; color: var(--gray-300); margin-bottom: 16px;"></i>
+                    <h3 style="font-size: 20px; font-weight: 600; color: var(--gray-600);">No questions found</h3>
+                    <p style="color: var(--gray-500); margin-top: 8px;">Try adjusting your search or <a href="contact.html" style="color: var(--primary-light); font-weight: 600;">contact us</a> directly.</p>
+                </div>
+                
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+        </div>
+    </section>
+    
+    <!-- Still Have Questions? -->
+    <section style="padding: 60px 0; background: var(--off-white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <div style="width: 64px; height: 64px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 28px; color: var(--primary-light);">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px;">Still Have Questions?</h2>
+                <p style="color: var(--gray-600); margin-bottom: 24px; line-height: 1.8;">
+                    Didn't find what you're looking for? Our team is here to help. Reach out to us directly.
+                </p>
+                <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                    <a href="contact.html" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                    <a href="https://wa.me/233245359395" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Us
+                    </a>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
     
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
-       class="whatsapp-float" 
-       target="_blank"
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us!</span>
-    </a>
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo.png" alt="Perfect Page Freight">
+                    <span>Perfect Page <span class="logo-highlight">Freight</span></span>
+                </a>
+                <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
+                <p class="footer-description">
+                    Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="quote.html">Request Quote</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="sea-freight.html">Sea Freight</a></li>
+                    <li><a href="air-freight.html">Air Freight</a></li>
+                    <li><a href="land-transport.html">Land Transport</a></li>
+                    <li><a href="#">Customs Clearance</a></li>
+                    <li><a href="#">Warehousing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
+                    <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
+   class="whatsapp-float" 
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat with us!</span>
+</a>
 
 <!-- ==================== CHATBOT ==================== -->
-
-<!-- Chatbot Toggle Button -->
 <button class="chatbot-toggle" id="chatbotToggle">
     <span class="chat-icon"><i class="fas fa-comment-dots"></i></span>
     <span class="close-icon"><i class="fas fa-times"></i></span>
     <span class="badge">1</span>
 </button>
 
-<!-- Chatbot Window -->
 <div class="chatbot-window" id="chatbotWindow">
-    
-    <!-- Header -->
     <div class="chatbot-header">
         <div class="info">
             <div class="avatar"><i class="fas fa-ship"></i></div>
@@ -519,57 +686,138 @@
         </div>
         <button class="close-btn" id="chatbotClose"><i class="fas fa-times"></i></button>
     </div>
-    
-    <!-- Messages -->
     <div class="chatbot-messages" id="chatbotMessages"></div>
-    
-    <!-- Typing Indicator -->
     <div class="typing" id="typingIndicator">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
-    
-    <!-- Input -->
     <div class="chatbot-input">
         <input type="text" id="chatbotInput" placeholder="Type your message..." maxlength="200">
         <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
     </div>
-    
 </div>
-    
-    <script src="js/script.js"></script>
-    
-    <script>
-        // FAQ Toggle Function
-        function toggleFAQ(element) {
-            const faqItem = element.closest('.faq-item');
-            const isActive = faqItem.classList.contains('active');
-            
-            // Close all other FAQ items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== faqItem) {
-                    item.classList.remove('active');
-                }
-            });
-            
-            // Toggle current item
-            if (isActive) {
-                faqItem.classList.remove('active');
-            } else {
-                faqItem.classList.add('active');
-            }
-        }
+
+<script src="js/script.js"></script>
+
+<script>
+    // FAQ Toggle Function
+    function toggleFAQ(element) {
+        const faqItem = element.closest('.faq-item');
+        const isActive = faqItem.classList.contains('active');
         
-        // Open first FAQ item by default
-        document.addEventListener('DOMContentLoaded', function() {
-            const firstFaq = document.querySelector('.faq-item');
-            if (firstFaq) {
-                firstFaq.classList.add('active');
+        // Close all other FAQ items
+        document.querySelectorAll('.faq-item').forEach(item => {
+            if (item !== faqItem) {
+                item.classList.remove('active');
             }
         });
-    </script>
-    <script type="application/ld+json">
+        
+        // Toggle current item
+        if (isActive) {
+            faqItem.classList.remove('active');
+        } else {
+            faqItem.classList.add('active');
+        }
+    }
+    
+    // FAQ Search Function
+    function searchFAQ() {
+        const input = document.getElementById('faqSearchInput');
+        const filter = input.value.toLowerCase().trim();
+        const faqItems = document.querySelectorAll('.faq-item');
+        const noResults = document.getElementById('noResults');
+        const clearBtn = document.getElementById('clearSearchBtn');
+        let visibleCount = 0;
+        
+        if (filter.length > 0) {
+            clearBtn.classList.add('visible');
+        } else {
+            clearBtn.classList.remove('visible');
+        }
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+            const answer = item.querySelector('.faq-answer .content').textContent.toLowerCase();
+            const isVisible = question.includes(filter) || answer.includes(filter);
+            
+            if (filter === '') {
+                item.classList.remove('hidden');
+                visibleCount++;
+            } else if (isVisible) {
+                item.classList.remove('hidden');
+                visibleCount++;
+            } else {
+                item.classList.add('hidden');
+                item.classList.remove('active');
+            }
+        });
+        
+        if (visibleCount === 0 && filter !== '') {
+            noResults.style.display = 'block';
+        } else {
+            noResults.style.display = 'none';
+        }
+    }
+    
+    // Clear Search
+    function clearSearch() {
+        document.getElementById('faqSearchInput').value = '';
+        document.getElementById('clearSearchBtn').classList.remove('visible');
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('hidden');
+        });
+        document.getElementById('noResults').style.display = 'none';
+    }
+    
+    // Open first FAQ item by default
+    document.addEventListener('DOMContentLoaded', function() {
+        const firstFaq = document.querySelector('.faq-item');
+        if (firstFaq) {
+            firstFaq.classList.add('active');
+        }
+    });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What freight services do you offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We offer comprehensive freight forwarding services including sea freight (FCL and LCL), air freight (express cargo), land transport across Ghana and West Africa, customs clearance, and warehousing."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long has Perfect Page Freight been in business?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Perfect Page Freight Logistics has been providing reliable freight forwarding services since 2015, with over 15 years of combined industry experience."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are your typical delivery times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Air freight: 2-5 business days, Sea freight: 2-6 weeks, Land transport: 1-7 days, depending on destination."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you handle customs clearance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we provide full customs clearance services including documentation preparation, duty calculations, and compliance requirements."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",

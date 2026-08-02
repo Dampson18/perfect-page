@@ -1,6 +1,7 @@
 // ========================================
 // PERFECT PAGE FREIGHT - COMPLETE JAVASCRIPT
 // ========================================
+
 // ========================================
 // 0. PREMIUM LOADER WITH MOTTO
 // ========================================
@@ -214,265 +215,261 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-// ========================================
-// 7. FORM VALIDATION & SUBMISSION - WITH DEBUGGING
-// ========================================
-
-const quoteForm = document.getElementById('quoteForm');
-const contactForm = document.getElementById('contactForm');
-
-// Function to validate form
-function validateForm(form) {
-    let isValid = true;
-    const requiredFields = form.querySelectorAll('[required]');
+    // ========================================
+    // 7. FORM VALIDATION & SUBMISSION
+    // ========================================
     
-    form.querySelectorAll('.error-message').forEach(el => el.remove());
-    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    const quoteForm = document.getElementById('quoteForm');
+    const contactForm = document.getElementById('contactForm');
     
-    requiredFields.forEach(field => {
-        if (!field.value.trim()) {
-            isValid = false;
-            field.classList.add('error');
-            
-            const errorMsg = document.createElement('span');
-            errorMsg.className = 'error-message';
-            errorMsg.style.color = '#EF4444';
-            errorMsg.style.fontSize = '13px';
-            errorMsg.style.marginTop = '4px';
-            errorMsg.textContent = 'This field is required';
-            field.parentElement.appendChild(errorMsg);
-        }
+    // Function to validate form
+    function validateForm(form) {
+        let isValid = true;
+        const requiredFields = form.querySelectorAll('[required]');
         
-        if (field.type === 'email' && field.value.trim()) {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(field.value.trim())) {
+        form.querySelectorAll('.error-message').forEach(el => el.remove());
+        form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
                 isValid = false;
                 field.classList.add('error');
                 
-                const errorMsg = field.parentElement.querySelector('.error-message');
-                if (errorMsg) {
-                    errorMsg.textContent = 'Please enter a valid email address';
-                } else {
-                    const newError = document.createElement('span');
-                    newError.className = 'error-message';
-                    newError.style.color = '#EF4444';
-                    newError.style.fontSize = '13px';
-                    newError.style.marginTop = '4px';
-                    newError.textContent = 'Please enter a valid email address';
-                    field.parentElement.appendChild(newError);
-                }
+                const errorMsg = document.createElement('span');
+                errorMsg.className = 'error-message';
+                errorMsg.style.color = '#EF4444';
+                errorMsg.style.fontSize = '13px';
+                errorMsg.style.marginTop = '4px';
+                errorMsg.textContent = 'This field is required';
+                field.parentElement.appendChild(errorMsg);
             }
-        }
-        
-        if (field.type === 'tel' && field.value.trim()) {
-            const phoneRegex = /^[\+\d\s\-\(\)]{8,20}$/;
-            if (!phoneRegex.test(field.value.trim())) {
-                isValid = false;
-                field.classList.add('error');
-                
-                const errorMsg = field.parentElement.querySelector('.error-message');
-                if (errorMsg) {
-                    errorMsg.textContent = 'Please enter a valid phone number';
-                } else {
-                    const newError = document.createElement('span');
-                    newError.className = 'error-message';
-                    newError.style.color = '#EF4444';
-                    newError.style.fontSize = '13px';
-                    newError.style.marginTop = '4px';
-                    newError.textContent = 'Please enter a valid phone number';
-                    field.parentElement.appendChild(newError);
-                }
-            }
-        }
-    });
-    
-    return isValid;
-}
-
-// ========================================
-// QUOTE FORM - WITH DEBUGGING
-// ========================================
-
-if (quoteForm) {
-    quoteForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (!validateForm(this)) {
-            return;
-        }
-        
-        const submitBtn = this.querySelector('.submit-btn');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-        
-        const formData = new FormData(this);
-        
-        // Log what's being sent (for debugging)
-        console.log('Sending form data:');
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
-        
-        fetch(this.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            console.log('Response status:', response.status);
-            return response.text();
-        })
-        .then(data => {
-            console.log('Response data:', data);
             
-            // Check if the response contains success indicators
-            if (data.includes('success') || data.includes('ok') || data.includes('Thank you')) {
-                // Hide form, show success message
-                this.style.display = 'none';
-                const successMsg = document.getElementById('successMessage');
-                if (successMsg) {
-                    successMsg.style.display = 'block';
-                }
-                this.reset();
-            } else {
-                // Try parsing as JSON
-                try {
-                    const jsonData = JSON.parse(data);
-                    if (jsonData.success) {
-                        this.style.display = 'none';
-                        const successMsg = document.getElementById('successMessage');
-                        if (successMsg) {
-                            successMsg.style.display = 'block';
-                        }
-                        this.reset();
+            if (field.type === 'email' && field.value.trim()) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(field.value.trim())) {
+                    isValid = false;
+                    field.classList.add('error');
+                    
+                    const errorMsg = field.parentElement.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.textContent = 'Please enter a valid email address';
                     } else {
-                        throw new Error('Server returned error: ' + jsonData.message);
+                        const newError = document.createElement('span');
+                        newError.className = 'error-message';
+                        newError.style.color = '#EF4444';
+                        newError.style.fontSize = '13px';
+                        newError.style.marginTop = '4px';
+                        newError.textContent = 'Please enter a valid email address';
+                        field.parentElement.appendChild(newError);
                     }
-                } catch (e) {
-                    // If it's HTML response, assume success (FormSubmit returns HTML)
+                }
+            }
+            
+            if (field.type === 'tel' && field.value.trim()) {
+                const phoneRegex = /^[\+\d\s\-\(\)]{8,20}$/;
+                if (!phoneRegex.test(field.value.trim())) {
+                    isValid = false;
+                    field.classList.add('error');
+                    
+                    const errorMsg = field.parentElement.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.textContent = 'Please enter a valid phone number';
+                    } else {
+                        const newError = document.createElement('span');
+                        newError.className = 'error-message';
+                        newError.style.color = '#EF4444';
+                        newError.style.fontSize = '13px';
+                        newError.style.marginTop = '4px';
+                        newError.textContent = 'Please enter a valid phone number';
+                        field.parentElement.appendChild(newError);
+                    }
+                }
+            }
+        });
+        
+        return isValid;
+    }
+    
+    // Quote Form Handler
+    if (quoteForm) {
+        quoteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm(this)) {
+                return;
+            }
+            
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            // Log what's being sent (for debugging)
+            console.log('Sending form data:');
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.text();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                
+                // Check if the response contains success indicators
+                if (data.includes('success') || data.includes('ok') || data.includes('Thank you')) {
+                    // Hide form, show success message
                     this.style.display = 'none';
                     const successMsg = document.getElementById('successMessage');
                     if (successMsg) {
                         successMsg.style.display = 'block';
                     }
                     this.reset();
-                }
-            }
-            
-            submitBtn.innerHTML = '✓ Sent Successfully!';
-            submitBtn.style.background = '#10B981';
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            submitBtn.innerHTML = '❌ Failed to Send';
-            submitBtn.style.background = '#EF4444';
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        });
-    });
-}
-
-// ========================================
-// CONTACT FORM - WITH DEBUGGING
-// ========================================
-
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        if (!validateForm(this)) {
-            return;
-        }
-        
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-        submitBtn.disabled = true;
-        
-        const formData = new FormData(this);
-        
-        // Log what's being sent (for debugging)
-        console.log('Sending contact form data:');
-        for (let pair of formData.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
-        
-        fetch(this.action, {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => {
-            console.log('Response status:', response.status);
-            return response.text();
-        })
-        .then(data => {
-            console.log('Response data:', data);
-            
-            // Check if the response contains success indicators
-            if (data.includes('success') || data.includes('ok') || data.includes('Thank you')) {
-                this.style.display = 'none';
-                const successMsg = document.getElementById('contactSuccessMessage');
-                if (successMsg) {
-                    successMsg.style.display = 'block';
-                }
-                this.reset();
-            } else {
-                // Try parsing as JSON
-                try {
-                    const jsonData = JSON.parse(data);
-                    if (jsonData.success) {
+                } else {
+                    // Try parsing as JSON
+                    try {
+                        const jsonData = JSON.parse(data);
+                        if (jsonData.success) {
+                            this.style.display = 'none';
+                            const successMsg = document.getElementById('successMessage');
+                            if (successMsg) {
+                                successMsg.style.display = 'block';
+                            }
+                            this.reset();
+                        } else {
+                            throw new Error('Server returned error: ' + jsonData.message);
+                        }
+                    } catch (e) {
+                        // If it's HTML response, assume success (FormSubmit returns HTML)
                         this.style.display = 'none';
-                        const successMsg = document.getElementById('contactSuccessMessage');
+                        const successMsg = document.getElementById('successMessage');
                         if (successMsg) {
                             successMsg.style.display = 'block';
                         }
                         this.reset();
-                    } else {
-                        throw new Error('Server returned error: ' + jsonData.message);
                     }
-                } catch (e) {
-                    // If it's HTML response, assume success (FormSubmit returns HTML)
+                }
+                
+                submitBtn.innerHTML = 'Sent Successfully';
+                submitBtn.style.background = '#10B981';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                submitBtn.innerHTML = 'Failed to Send';
+                submitBtn.style.background = '#EF4444';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
+        });
+    }
+    
+    // Contact Form Handler
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            if (!validateForm(this)) {
+                return;
+            }
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            // Log what's being sent (for debugging)
+            console.log('Sending contact form data:');
+            for (let pair of formData.entries()) {
+                console.log(pair[0] + ': ' + pair[1]);
+            }
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.text();
+            })
+            .then(data => {
+                console.log('Response data:', data);
+                
+                // Check if the response contains success indicators
+                if (data.includes('success') || data.includes('ok') || data.includes('Thank you')) {
                     this.style.display = 'none';
                     const successMsg = document.getElementById('contactSuccessMessage');
                     if (successMsg) {
                         successMsg.style.display = 'block';
                     }
                     this.reset();
+                } else {
+                    // Try parsing as JSON
+                    try {
+                        const jsonData = JSON.parse(data);
+                        if (jsonData.success) {
+                            this.style.display = 'none';
+                            const successMsg = document.getElementById('contactSuccessMessage');
+                            if (successMsg) {
+                                successMsg.style.display = 'block';
+                            }
+                            this.reset();
+                        } else {
+                            throw new Error('Server returned error: ' + jsonData.message);
+                        }
+                    } catch (e) {
+                        // If it's HTML response, assume success (FormSubmit returns HTML)
+                        this.style.display = 'none';
+                        const successMsg = document.getElementById('contactSuccessMessage');
+                        if (successMsg) {
+                            successMsg.style.display = 'block';
+                        }
+                        this.reset();
+                    }
                 }
-            }
-            
-            submitBtn.innerHTML = '✓ Sent Successfully!';
-            submitBtn.style.background = '#10B981';
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
-        })
-        .catch(error => {
-            console.error('Fetch error:', error);
-            submitBtn.innerHTML = '❌ Failed to Send';
-            submitBtn.style.background = '#EF4444';
-            
-            setTimeout(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.style.background = '';
-                submitBtn.disabled = false;
-            }, 3000);
+                
+                submitBtn.innerHTML = 'Sent Successfully';
+                submitBtn.style.background = '#10B981';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                submitBtn.innerHTML = 'Failed to Send';
+                submitBtn.style.background = '#EF4444';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+            });
         });
-    });
-}    // ========================================
+    }
+    
+    // ========================================
     // 8. SCROLL REVEAL ANIMATIONS
     // ========================================
     
@@ -512,7 +509,7 @@ if (contactForm) {
     
     console.log('%c Perfect Page Freight Logistics ', 'background: #0A1628; color: #60A5FA; font-size: 18px; font-weight: bold; padding: 10px 20px; border-radius: 4px;');
     console.log('%c Reliable Freight Forwarder | Your Success Our Priority ', 'color: #1F2937; font-size: 14px;');
-    console.log('📧 info@perfectpagefreight.com | 📞 +233 24 535 9395');
+    console.log('Email: info@perfectpagefreight.com | Phone: +233 24 535 9395');
     
 });
 
@@ -541,7 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // DOM Elements
     const toggle = document.getElementById('chatbotToggle');
-    const window = document.getElementById('chatbotWindow');
+    const chatbotWindow = document.getElementById('chatbotWindow');
     const close = document.getElementById('chatbotClose');
     const input = document.getElementById('chatbotInput');
     const send = document.getElementById('chatbotSend');
@@ -557,67 +554,67 @@ document.addEventListener('DOMContentLoaded', function() {
     
     const responses = {
         // Greetings
-        'hello': 'Hello! 👋 Welcome to Perfect Page Freight Logistics. How can I help you today?',
-        'hi': 'Hi there! 👋 How can I assist you with your freight needs?',
-        'hey': 'Hey! Welcome to Perfect Page Freight Logistics. What can I do for you?',
-        'good morning': 'Good morning! ☀️ How can I help you with your freight needs today?',
-        'good afternoon': 'Good afternoon! How can I assist you with your logistics needs?',
-        'good evening': 'Good evening! How can I help you with your freight requirements?',
+        'hello': 'Hello and welcome to Perfect Page Freight Logistics. How can I help you today?',
+        'hi': 'Hello. How can I assist you with your freight needs?',
+        'hey': 'Welcome to Perfect Page Freight Logistics. What can I do for you?',
+        'good morning': 'Good morning. How can I help you with your freight needs today?',
+        'good afternoon': 'Good afternoon. How can I assist you with your logistics needs?',
+        'good evening': 'Good evening. How can I help you with your freight requirements?',
         
         // Services
-        'services': 'We offer three main services:\n\n🚢 Sea Freight - FCL & LCL container shipping worldwide\n✈️ Air Freight - Express cargo services globally\n🚛 Land Transport - Road freight across Ghana & West Africa',
-        'sea freight': '🚢 Sea Freight Services\n\nWe offer:\n• FCL (Full Container Load)\n• LCL (Less than Container Load)\n• Door-to-door delivery\n• Customs clearance\n• Global port coverage',
-        'air freight': '✈️ Air Freight Services\n\nWe offer:\n• Express air cargo\n• Door-to-door delivery\n• Airport-to-airport\n• Real-time tracking\n• Worldwide destinations',
-        'land transport': '🚛 Land Transport Services\n\nWe offer:\n• Full Truckload (FTL)\n• Less-than-Truckload (LTL)\n• West Africa regional transport\n• GPS tracking\n• Reliable delivery',
-        'customs': '📋 Customs Clearance\n\nWe handle:\n• Documentation preparation\n• Duty calculations\n• Compliance checks\n• Fast clearance\n\nOur experts ensure your cargo clears customs smoothly!',
+        'services': 'We offer three main services:\n\nSea Freight - FCL and LCL container shipping worldwide\nAir Freight - Express cargo services globally\nLand Transport - Road freight across Ghana and West Africa',
+        'sea freight': 'Sea Freight Services\n\nWe offer:\n- FCL (Full Container Load)\n- LCL (Less than Container Load)\n- Door-to-door delivery\n- Customs clearance\n- Global port coverage',
+        'air freight': 'Air Freight Services\n\nWe offer:\n- Express air cargo\n- Door-to-door delivery\n- Airport-to-airport\n- Real-time tracking\n- Worldwide destinations',
+        'land transport': 'Land Transport Services\n\nWe offer:\n- Full Truckload (FTL)\n- Less-than-Truckload (LTL)\n- West Africa regional transport\n- GPS tracking\n- Reliable delivery',
+        'customs': 'Customs Clearance\n\nWe handle:\n- Documentation preparation\n- Duty calculations\n- Compliance checks\n- Fast clearance\n\nOur experts ensure your cargo clears customs smoothly.',
         
         // Quotes
-        'quote': '📝 To get a quote, please visit our <a href="quote.html" style="color: #3B82F6; font-weight: 600;">Quote Request page</a> or provide your cargo details and we\'ll get back to you within 24 hours!',
-        'price': '💰 Pricing depends on:\n\n• Type of cargo\n• Weight & volume\n• Destination\n• Service level (air/sea/land)\n\nFor an accurate quote, please visit our <a href="quote.html" style="color: #3B82F6; font-weight: 600;">Quote page</a>!',
-        'cost': '💵 Shipping costs vary based on several factors. For a personalized quote, please visit our <a href="quote.html" style="color: #3B82F6; font-weight: 600;">Quote Request page</a>.',
+        'quote': 'To get a quote, please visit our Quote Request page or provide your cargo details and we will get back to you within 24 hours.',
+        'price': 'Pricing depends on:\n\n- Type of cargo\n- Weight and volume\n- Destination\n- Service level (air, sea, or land)\n\nFor an accurate quote, please visit our Quote page.',
+        'cost': 'Shipping costs vary based on several factors. For a personalized quote, please visit our Quote Request page.',
         
         // Delivery
-        'delivery': '⏰ Estimated Delivery Times\n\n• ✈️ Air Freight: 2-5 days\n• 🚢 Sea Freight: 2-6 weeks\n• 🚛 Land Transport: 1-7 days\n\nExact times depend on the destination. Contact us for specific routes!',
-        'time': '⏱️ Delivery times vary by service:\n\n• Air: 2-5 business days\n• Sea: 2-6 weeks\n• Land: 1-7 days\n\nNeed something urgent? Air freight is your best option!',
+        'delivery': 'Estimated Delivery Times\n\n- Air Freight: 2-5 days\n- Sea Freight: 2-6 weeks\n- Land Transport: 1-7 days\n\nExact times depend on the destination. Contact us for specific routes.',
+        'time': 'Delivery times vary by service:\n\n- Air: 2-5 business days\n- Sea: 2-6 weeks\n- Land: 1-7 days\n\nNeed something urgent? Air freight is your best option.',
         
         // Tracking
-        'track': '🔍 Shipment Tracking\n\nWe\'re currently developing a real-time tracking system! 🚀\n\nIn the meantime, you can:\n• Contact us directly\n• Email: info@perfectpagefreight.com\n• Call: +233 24 535 9395',
-        'tracking': '📦 Tracking Information\n\nOur tracking system is coming soon! Until then:\n\n📧 Email: info@perfectpagefreight.com\n📞 Call: +233 24 535 9395\n💬 WhatsApp: +233 24 535 9395',
+        'track': 'Shipment Tracking\n\nWe are currently developing a real-time tracking system.\n\nIn the meantime, you can:\n- Contact us directly\n- Email: info@perfectpagefreight.com\n- Call: +233 24 535 9395',
+        'tracking': 'Tracking Information\n\nOur tracking system is coming soon. Until then:\n\nEmail: info@perfectpagefreight.com\nPhone: +233 24 535 9395\nWhatsApp: +233 24 535 9395',
         
         // Contact
-        'contact': '📞 Contact Us\n\n📧 Email: info@perfectpagefreight.com\n📱 Phone: +233 24 535 9395\n💬 WhatsApp: +233 24 535 9395\n📍 Location: Accra, Ghana\n\nWe\'re available Monday-Friday, 8am-6pm!',
-        'phone': '📱 You can reach us at:\n\n📞 +233 24 535 9395\n💬 WhatsApp: +233 24 535 9395\n\nWe\'re available Monday-Friday, 8am-6pm!',
-        'email': '📧 Email us at:\n\ninfo@perfectpagefreight.com\n\nWe\'ll respond within 24 hours!',
-        'location': '📍 Our Location\n\nWe\'re based in Accra, Ghana.\n\nVisit our <a href="contact.html" style="color: #3B82F6; font-weight: 600;">Contact page</a> for the Google Maps location!',
-        'whatsapp': '💬 Chat with us on WhatsApp:\n\n📱 +233 24 535 9395\n\nClick the WhatsApp button on our website to start chatting!',
+        'contact': 'Contact Us\n\nEmail: info@perfectpagefreight.com\nPhone: +233 24 535 9395\nWhatsApp: +233 24 535 9395\nLocation: Accra, Ghana\n\nWe are available Monday-Friday, 8am-6pm.',
+        'phone': 'You can reach us at:\n\nPhone: +233 24 535 9395\nWhatsApp: +233 24 535 9395\n\nWe are available Monday-Friday, 8am-6pm.',
+        'email': 'Email us at:\n\ninfo@perfectpagefreight.com\n\nWe will respond within 24 hours.',
+        'location': 'Our Location\n\nWe are based in Accra, Ghana.\n\nVisit our Contact page for the Google Maps location.',
+        'whatsapp': 'Chat with us on WhatsApp:\n\n+233 24 535 9395\n\nClick the WhatsApp button on our website to start chatting.',
         
         // About
-        'about': '🏢 About Perfect Page Freight\n\n• Founded in 2015\n• 15+ years experience\n• Trusted freight forwarder in Ghana\n• Sea, Air & Land services\n• Motto: "Your Success, Our Priority"\n\nVisit our <a href="about.html" style="color: #3B82F6; font-weight: 600;">About page</a> to learn more!',
-        'company': '🏢 Company Info\n\n• Name: Perfect Page Freight Logistics\n• Founded: 2015\n• Location: Accra, Ghana\n• Services: Sea, Air & Land Freight\n• Fully registered & licensed',
-        'experience': '💪 Experience\n\nWe have 15+ years of combined experience in freight forwarding and logistics.',
+        'about': 'About Perfect Page Freight\n\n- Founded in 2015\n- 15+ years experience\n- Trusted freight forwarder in Ghana\n- Sea, Air and Land services\n- Motto: "Your Success, Our Priority"\n\nVisit our About page to learn more.',
+        'company': 'Company Info\n\n- Name: Perfect Page Freight Logistics\n- Founded: 2015\n- Location: Accra, Ghana\n- Services: Sea, Air and Land Freight\n- Fully registered and licensed',
+        'experience': 'Experience\n\nWe have 15+ years of combined experience in freight forwarding and logistics.',
         
         // FAQ
-        'faq': '📋 FAQ Categories\n\n• General Questions\n• Shipping & Delivery\n• Customs & Documentation\n• Business Information\n\nVisit our <a href="faq.html" style="color: #3B82F6; font-weight: 600;">FAQ page</a> for detailed answers!',
+        'faq': 'FAQ Categories\n\n- General Questions\n- Shipping and Delivery\n- Customs and Documentation\n- Business Information\n\nVisit our FAQ page for detailed answers.',
         
         // Help
-        'help': 'How can I help you? Here are some things you can ask about:\n\n• Services (sea, air, land)\n• Quotes & pricing\n• Delivery times\n• Tracking\n• Customs clearance\n• Company information\n\nType your question or choose from the quick replies!',
-        'what can you do': 'I can help you with:\n\n• Service information\n• Quote requests\n• Delivery times\n• Tracking updates\n• Customs clearance\n• Company information\n\nJust ask me anything!',
+        'help': 'How can I help you? Here are some things you can ask about:\n\n- Services (sea, air, land)\n- Quotes and pricing\n- Delivery times\n- Tracking\n- Customs clearance\n- Company information\n\nType your question or choose from the quick replies.',
+        'what can you do': 'I can help you with:\n\n- Service information\n- Quote requests\n- Delivery times\n- Tracking updates\n- Customs clearance\n- Company information\n\nJust ask me anything.',
         
         // Goodbye
-        'bye': 'Thank you for chatting with Perfect Page Freight Logistics! 🚢\n\n📧 info@perfectpagefreight.com\n📞 +233 24 535 9395\n\nHave a great day! 😊',
-        'goodbye': 'Goodbye! 👋 Feel free to reach out anytime for your freight needs.',
-        'thank you': 'You\'re welcome! 🎉 If you need anything else, just ask!',
-        'thanks': 'You\'re welcome! 😊 Is there anything else I can help with?',
+        'bye': 'Thank you for chatting with Perfect Page Freight Logistics.\n\nEmail: info@perfectpagefreight.com\nPhone: +233 24 535 9395\n\nHave a great day.',
+        'goodbye': 'Goodbye. Feel free to reach out anytime for your freight needs.',
+        'thank you': 'You are welcome. If you need anything else, just ask.',
+        'thanks': 'You are welcome. Is there anything else I can help with?',
     };
     
     // Quick Replies
     const quickReplies = [
-        { text: '🚢 Sea Freight', value: 'sea freight' },
-        { text: '✈️ Air Freight', value: 'air freight' },
-        { text: '🚛 Land Transport', value: 'land transport' },
-        { text: '💰 Get Quote', value: 'quote' },
-        { text: '⏰ Delivery Time', value: 'delivery' },
-        { text: '📞 Contact Us', value: 'contact' },
+        { text: 'Sea Freight', value: 'sea freight' },
+        { text: 'Air Freight', value: 'air freight' },
+        { text: 'Land Transport', value: 'land transport' },
+        { text: 'Get Quote', value: 'quote' },
+        { text: 'Delivery Time', value: 'delivery' },
+        { text: 'Contact Us', value: 'contact' },
     ];
     
     // ========================================
@@ -627,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleChat() {
         isOpen = !isOpen;
         toggle.classList.toggle('active');
-        window.classList.toggle('active');
+        chatbotWindow.classList.toggle('active');
         if (isOpen) {
             input.focus();
             setTimeout(scrollToBottom, 100);
@@ -692,7 +689,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
         
-        return 'Thank you for your question! 👋\n\nIf you\'re asking about our services, quotes, delivery times, or customs clearance, please try rephrasing.\n\nOr contact us directly:\n📧 info@perfectpagefreight.com\n📞 +233 24 535 9395';
+        return 'Thank you for your question.\n\nIf you are asking about our services, quotes, delivery times, or customs clearance, please try rephrasing.\n\nOr contact us directly:\nEmail: info@perfectpagefreight.com\nPhone: +233 24 535 9395';
     }
     
     function addQuickReplies() {
@@ -718,7 +715,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             linkDiv.className = 'quick-replies';
                             const linkBtn = document.createElement('button');
                             linkBtn.className = 'qr-btn';
-                            linkBtn.textContent = '📝 Go to Quote Page';
+                            linkBtn.textContent = 'Go to Quote Page';
                             linkBtn.style.background = '#3B82F6';
                             linkBtn.style.color = '#fff';
                             linkBtn.addEventListener('click', function() {
@@ -765,7 +762,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ========================================
     
     function initChatbot() {
-        addMessage('👋 Hello! Welcome to <strong>Perfect Page Freight Logistics</strong>.<br><br>I\'m here to help you with:<br>• Service information<br>• Quotes & pricing<br>• Delivery times<br>• Customs clearance<br>• Tracking updates<br><br>What can I help you with today? 😊', 'bot');
+        addMessage('Hello. Welcome to Perfect Page Freight Logistics.\n\nI am here to help you with:\n- Service information\n- Quotes and pricing\n- Delivery times\n- Customs clearance\n- Tracking updates\n\nWhat can I help you with today?', 'bot');
         addQuickReplies();
     }
     
@@ -800,7 +797,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close on outside click
     document.addEventListener('click', function(e) {
         if (isOpen) {
-            const isInside = window.contains(e.target);
+            const isInside = chatbotWindow.contains(e.target);
             const isOnToggle = toggle.contains(e.target);
             if (!isInside && !isOnToggle) {
                 closeChat();

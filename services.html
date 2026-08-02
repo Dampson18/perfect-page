@@ -19,21 +19,194 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .service-feature {
+            text-align: center;
+            padding: 24px 20px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-feature:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        
+        .service-feature .icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 24px;
+            color: var(--primary-light);
+            transition: var(--transition-base);
+        }
+        
+        .service-feature:hover .icon {
+            background: var(--gradient-accent);
+            color: var(--white);
+            transform: scale(1.05);
+        }
+        
+        .service-feature h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+        }
+        
+        .service-feature p {
+            font-size: 13px;
+            color: var(--gray-500);
+            line-height: 1.5;
+        }
+        
+        .service-card-detailed {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            border: 1px solid var(--gray-200);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card-detailed::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: var(--transition-base);
+        }
+        
+        .service-card-detailed:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card-detailed:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--primary-light);
+        }
+        
+        .service-card-detailed .icon-large {
+            width: 72px;
+            height: 72px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            color: var(--primary-light);
+            margin-bottom: 16px;
+            transition: var(--transition-base);
+        }
+        
+        .service-card-detailed:hover .icon-large {
+            background: var(--gradient-accent);
+            color: var(--white);
+            transform: scale(1.05) rotate(-5deg);
+        }
+        
+        .service-card-detailed .service-image {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            position: relative;
+        }
+        
+        .service-card-detailed .service-image img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card-detailed:hover .service-image img {
+            transform: scale(1.05);
+        }
+        
+        .service-card-detailed .service-image .badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 14px;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            font-size: 11px;
+            font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .service-card-detailed .service-image .badge i {
+            margin-right: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .service-features {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+            
+            .service-card-detailed {
+                grid-template-columns: 1fr;
+                padding: 24px 20px;
+                gap: 24px;
+            }
+            
+            .service-card-detailed .service-image img {
+                height: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .service-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
+
 <!-- ==================== LOADER WITH MOTTO ==================== -->
 <div class="loader-overlay" id="loader">
     <div class="loader-container">
-        
-        <!-- Company Logo -->
         <div class="loader-logo">
             <div class="logo-icon">P</div>
             <span class="logo-text">
                 Perfect Page <span class="highlight">Freight</span>
             </span>
         </div>
-        
-        <!-- Animated Bars -->
         <div class="loader-bars">
             <div class="loader-bar"></div>
             <div class="loader-bar"></div>
@@ -44,13 +217,9 @@
             <div class="loader-bar"></div>
             <div class="loader-bar"></div>
         </div>
-        
-        <!-- Loading Text -->
         <div class="loader-text">
             Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span>
         </div>
-        
-        <!-- Motto Section -->
         <div class="loader-motto">
             <div class="motto-line">
                 <span class="divider"></span>
@@ -68,8 +237,6 @@
                 <span></span>
             </div>
         </div>
-        
-        <!-- Hidden SVG for gradient -->
         <svg style="position: absolute; width: 0; height: 0;">
             <defs>
                 <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -78,267 +245,388 @@
                 </linearGradient>
             </defs>
         </svg>
-        
     </div>
-</div> 
-    <!-- ==================== HEADER ==================== -->
-    <header class="header" id="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon"><span>P</span></div>
-                    <span class="logo-text">
-                        Perfect Page <span class="highlight">Freight</span>
-                        <span class="logo-badge">Logistics</span>
-                    </span>
+</div>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><span>P</span></div>
+                <span class="logo-text">
+                    Perfect Page <span class="highlight">Freight</span>
+                    <span class="logo-badge">Logistics</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="dropdown">
+                    <a href="services.html" class="nav-link active">
+                        Services <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
+                        <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
+                        <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
+                    <i class="fas fa-phone"></i>
+                    <span class="btn-text">Call Now</span>
                 </a>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="services.html" class="nav-link active">
-                            Services <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
-                            <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
-                            <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
-                        <i class="fas fa-phone"></i>
-                        <span class="btn-text">Call Now</span>
-                    </a>
-                    <a href="quote.html" class="btn-nav btn-nav-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        <span class="btn-text">Get Quote</span>
-                    </a>
-                    <div class="hamburger" id="hamburger">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
+                <a href="quote.html" class="btn-nav btn-nav-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    <span class="btn-text">Get Quote</span>
+                </a>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </nav>
+    </div>
+</header>
+
+<!-- ==================== MAIN CONTENT ==================== -->
+<main>
     
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <main>
-        
-        <!-- Page Hero -->
-        <section class="page-hero" style="padding: 140px 0 70px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
-            <div class="container">
-                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                    <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">What We Offer</span>
-                    <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">Our <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Services</span></h1>
-                    <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
-                        Comprehensive freight forwarding solutions tailored to your business needs. From sea to air to land, we've got you covered.
-                    </p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- All Services -->
-        <section style="padding: 80px 0;">
-            <div class="container">
-                <div style="display: grid; grid-template-columns: 1fr; gap: 50px; max-width: 1000px; margin: 0 auto;">
-                    
-                    <!-- Sea Freight -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--white); border-radius: var(--radius-lg); padding: 40px; border: 1px solid var(--gray-200); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                        <div>
-                            <div style="width: 70px; height: 70px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--primary-light); margin-bottom: 16px;">
-                                <i class="fas fa-ship"></i>
-                            </div>
-                            <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px;">Sea Freight</h2>
-                            <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
-                                Reliable ocean freight services with FCL (Full Container Load) and LCL (Less than Container Load) options to major global ports.
-                            </p>
-                            <ul style="margin-bottom: 20px;">
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>FCL & LCL shipping worldwide</span>
-                                </li>
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Container tracking and management</span>
-                                </li>
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Port-to-port and door-to-door delivery</span>
-                                </li>
-                            </ul>
-                            <a href="sea-freight.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">
-                                Learn More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
-                            <img src="images/sea-freight.jpg" alt="Sea Freight" style="width: 100%; height: 280px; object-fit: cover;" loading="lazy">
-                        </div>
-                    </div>
-                    
-                    <!-- Air Freight -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--white); border-radius: var(--radius-lg); padding: 40px; border: 1px solid var(--gray-200); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                        <div style="order: 2;">
-                            <div style="width: 70px; height: 70px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--primary-light); margin-bottom: 16px;">
-                                <i class="fas fa-plane"></i>
-                            </div>
-                            <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px;">Air Freight</h2>
-                            <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
-                                Fast and secure air cargo services for time-sensitive shipments. We handle everything from pickup to final delivery.
-                            </p>
-                            <ul style="margin-bottom: 20px;">
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Express air freight for urgent shipments</span>
-                                </li>
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Door-to-door and airport-to-airport</span>
-                                </li>
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Real-time flight status updates</span>
-                                </li>
-                            </ul>
-                            <a href="air-freight.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">
-                                Learn More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <div style="order: 1; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
-                            <img src="images/air-freight.jpg" alt="Air Freight" style="width: 100%; height: 280px; object-fit: cover;" loading="lazy">
-                        </div>
-                    </div>
-                    
-                    <!-- Land Transport -->
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; background: var(--white); border-radius: var(--radius-lg); padding: 40px; border: 1px solid var(--gray-200); transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);">
-                        <div>
-                            <div style="width: 70px; height: 70px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 32px; color: var(--primary-light); margin-bottom: 16px;">
-                                <i class="fas fa-truck"></i>
-                            </div>
-                            <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px;">Land Transport</h2>
-                            <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
-                                Efficient road and rail freight solutions across Ghana and West Africa. Reliable, cost-effective, and timely.
-                            </p>
-                            <ul style="margin-bottom: 20px;">
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Regional road freight across West Africa</span>
-                                </li>
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>Full truckload and less-than-truckload</span>
-                                </li>
-                                <li style="display: flex; gap: 10px; margin-bottom: 8px; color: var(--gray-600);">
-                                    <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
-                                    <span>GPS tracking for all vehicles</span>
-                                </li>
-                            </ul>
-                            <a href="land-transport.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">
-                                Learn More <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                        <div style="border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md);">
-                            <img src="images/land-transport.jpg" alt="Land Transport" style="width: 100%; height: 280px; object-fit: cover;" loading="lazy">
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <!-- CTA -->
-        <section class="cta-section">
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Need a Custom Solution?</h2>
-                    <p>Contact us today and let's discuss your specific freight requirements.</p>
-                    <a href="quote.html" class="btn btn-primary btn-large">
-                        <i class="fas fa-paper-plane"></i> Request a Quote
-                    </a>
-                </div>
-            </div>
-        </section>
-        
-    </main>
-    
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer" id="footer">
+    <!-- Page Hero -->
+    <section style="padding: 140px 0 60px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="footer-logo">
-                        <img src="images/logo.png" alt="Perfect Page Freight">
-                        <span>Perfect Page <span class="logo-highlight">Freight</span></span>
-                    </a>
-                    <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
-                    <p class="footer-description">
-                        Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Our Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="quote.html">Request Quote</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="sea-freight.html">Sea Freight</a></li>
-                        <li><a href="air-freight.html">Air Freight</a></li>
-                        <li><a href="land-transport.html">Land Transport</a></li>
-                        <li><a href="#">Customs Clearance</a></li>
-                        <li><a href="#">Warehousing</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
-                        <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
-                    </ul>
-                </div>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">
+                    <i class="fas fa-cogs" style="margin-right: 6px;"></i> What We Offer
+                </span>
+                <h1 style="font-size: 44px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px; letter-spacing: -1px;">Our <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Services</span></h1>
+                <p style="font-size: 18px; color: var(--gray-600); line-height: 1.8;">
+                    Comprehensive freight forwarding solutions tailored to your business needs. From sea to air to land, we've got you covered.
+                </p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+        </div>
+    </section>
+    
+    <!-- Service Features -->
+    <section style="padding: 0 0 60px;">
+        <div class="container">
+            <div class="service-features">
+                <div class="service-feature">
+                    <div class="icon"><i class="fas fa-ship"></i></div>
+                    <h4>Sea Freight</h4>
+                    <p>FCL &amp; LCL container shipping worldwide</p>
+                </div>
+                <div class="service-feature">
+                    <div class="icon"><i class="fas fa-plane"></i></div>
+                    <h4>Air Freight</h4>
+                    <p>Express cargo services globally</p>
+                </div>
+                <div class="service-feature">
+                    <div class="icon"><i class="fas fa-truck"></i></div>
+                    <h4>Land Transport</h4>
+                    <p>Road freight across Ghana &amp; West Africa</p>
+                </div>
+                <div class="service-feature">
+                    <div class="icon"><i class="fas fa-passport"></i></div>
+                    <h4>Customs Clearance</h4>
+                    <p>Expert documentation &amp; compliance</p>
+                </div>
+                <div class="service-feature">
+                    <div class="icon"><i class="fas fa-warehouse"></i></div>
+                    <h4>Warehousing</h4>
+                    <p>Secure storage &amp; inventory management</p>
+                </div>
+                <div class="service-feature">
+                    <div class="icon"><i class="fas fa-door-open"></i></div>
+                    <h4>Door-to-Door</h4>
+                    <p>Complete logistics from pickup to delivery</p>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
     
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
-       class="whatsapp-float" 
-       target="_blank"
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us!</span>
-    </a>
+    <!-- All Services - Detailed -->
+    <section style="padding: 40px 0 80px;">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1fr; gap: 40px; max-width: 1100px; margin: 0 auto;">
+                
+                <!-- Sea Freight -->
+                <div class="service-card-detailed">
+                    <div>
+                        <div class="icon-large"><i class="fas fa-ship"></i></div>
+                        <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Sea Freight</h2>
+                        <p style="color: var(--gray-500); font-size: 14px; margin-bottom: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-light);"></i> FCL &amp; LCL Options
+                        </p>
+                        <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
+                            Reliable ocean freight services with FCL (Full Container Load) and LCL (Less than Container Load) options to major global ports. We handle everything from documentation to delivery.
+                        </p>
+                        <ul style="margin-bottom: 20px;">
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>FCL &amp; LCL shipping worldwide</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Container tracking and management</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Port-to-port and door-to-door delivery</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Customs clearance and documentation</span>
+                            </li>
+                        </ul>
+                        <a href="sea-freight.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="service-image">
+                        <img src="images/sea-freight.jpg" alt="Sea Freight container shipping" loading="lazy">
+                        <span class="badge"><i class="fas fa-ship"></i> Ocean Freight</span>
+                    </div>
+                </div>
+                
+                <!-- Air Freight -->
+                <div class="service-card-detailed">
+                    <div>
+                        <div class="icon-large"><i class="fas fa-plane"></i></div>
+                        <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Air Freight</h2>
+                        <p style="color: var(--gray-500); font-size: 14px; margin-bottom: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-light);"></i> Express &amp; Secure
+                        </p>
+                        <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
+                            Fast and secure air cargo services for time-sensitive shipments. We handle everything from pickup at origin to final delivery at destination.
+                        </p>
+                        <ul style="margin-bottom: 20px;">
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Express air freight for urgent shipments</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Door-to-door and airport-to-airport</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Real-time flight status updates</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Secure handling of high-value cargo</span>
+                            </li>
+                        </ul>
+                        <a href="air-freight.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="service-image">
+                        <img src="images/air-freight.jpg" alt="Air Freight cargo" loading="lazy">
+                        <span class="badge"><i class="fas fa-plane"></i> Air Cargo</span>
+                    </div>
+                </div>
+                
+                <!-- Land Transport -->
+                <div class="service-card-detailed">
+                    <div>
+                        <div class="icon-large"><i class="fas fa-truck"></i></div>
+                        <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 8px;">Land Transport</h2>
+                        <p style="color: var(--gray-500); font-size: 14px; margin-bottom: 12px;">
+                            <i class="fas fa-check-circle" style="color: var(--primary-light);"></i> Regional &amp; Reliable
+                        </p>
+                        <p style="color: var(--gray-600); line-height: 1.8; margin-bottom: 16px;">
+                            Efficient road and rail freight solutions across Ghana and West Africa. Reliable, cost-effective, and timely delivery for your cargo.
+                        </p>
+                        <ul style="margin-bottom: 20px;">
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Regional road freight across West Africa</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Full truckload and less-than-truckload</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>GPS tracking for all vehicles</span>
+                            </li>
+                            <li style="display: flex; gap: 10px; margin-bottom: 6px; color: var(--gray-600); font-size: 14px;">
+                                <i class="fas fa-check-circle" style="color: var(--primary-light); margin-top: 3px;"></i>
+                                <span>Temperature-controlled options available</span>
+                            </li>
+                        </ul>
+                        <a href="land-transport.html" class="btn btn-primary" style="padding: 12px 28px; font-size: 14px;">
+                            Learn More <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="service-image">
+                        <img src="images/land-transport.jpg" alt="Land Transport truck fleet" loading="lazy">
+                        <span class="badge"><i class="fas fa-truck"></i> Road Freight</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
     
-    <script src="js/script.js"></script>
-    <script type="application/ld+json">
+    <!-- Additional Services -->
+    <section style="padding: 60px 0; background: var(--off-white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+                <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">More Services</span>
+                <h2 style="font-size: 28px; font-weight: 800; color: var(--primary-dark); margin-top: 8px;">Additional <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Logistics</span> Solutions</h2>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1000px; margin: 0 auto;">
+                <div style="text-align: center; padding: 30px 20px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-200); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="width: 56px; height: 56px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 24px; color: var(--primary-light);">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <h4 style="font-size: 16px; font-weight: 600; color: var(--primary-dark); margin-bottom: 4px;">Customs Clearance</h4>
+                    <p style="font-size: 13px; color: var(--gray-500); line-height: 1.5;">Expert handling of all documentation, duty calculations, and compliance requirements for smooth customs clearance.</p>
+                </div>
+                <div style="text-align: center; padding: 30px 20px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-200); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="width: 56px; height: 56px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 24px; color: var(--primary-light);">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h4 style="font-size: 16px; font-weight: 600; color: var(--primary-dark); margin-bottom: 4px;">Warehousing</h4>
+                    <p style="font-size: 13px; color: var(--gray-500); line-height: 1.5;">Secure storage and inventory management solutions for your cargo, with flexible short-term and long-term options.</p>
+                </div>
+                <div style="text-align: center; padding: 30px 20px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-200); transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);">
+                    <div style="width: 56px; height: 56px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 24px; color: var(--primary-light);">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h4 style="font-size: 16px; font-weight: 600; color: var(--primary-dark); margin-bottom: 4px;">Door-to-Door Delivery</h4>
+                    <p style="font-size: 13px; color: var(--gray-500); line-height: 1.5;">Complete logistics solution from pickup at your location to final delivery at your destination, hassle-free.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <span class="cta-badge">📦 Need a Custom Solution?</span>
+                <h2>Let's Discuss Your Freight Needs</h2>
+                <p>Contact us today and let's create a tailored logistics solution that works for your business.</p>
+                <a href="quote.html" class="btn btn-primary btn-large">
+                    <i class="fas fa-paper-plane"></i> Request a Quote
+                </a>
+            </div>
+        </div>
+    </section>
+    
+</main>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo.png" alt="Perfect Page Freight">
+                    <span>Perfect Page <span class="logo-highlight">Freight</span></span>
+                </a>
+                <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
+                <p class="footer-description">
+                    Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="quote.html">Request Quote</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="sea-freight.html">Sea Freight</a></li>
+                    <li><a href="air-freight.html">Air Freight</a></li>
+                    <li><a href="land-transport.html">Land Transport</a></li>
+                    <li><a href="#">Customs Clearance</a></li>
+                    <li><a href="#">Warehousing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
+                    <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
+   class="whatsapp-float" 
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat with us!</span>
+</a>
+
+<!-- ==================== CHATBOT ==================== -->
+<button class="chatbot-toggle" id="chatbotToggle">
+    <span class="chat-icon"><i class="fas fa-comment-dots"></i></span>
+    <span class="close-icon"><i class="fas fa-times"></i></span>
+    <span class="badge">1</span>
+</button>
+
+<div class="chatbot-window" id="chatbotWindow">
+    <div class="chatbot-header">
+        <div class="info">
+            <div class="avatar"><i class="fas fa-ship"></i></div>
+            <div class="title">
+                <h4>Perfect Page Freight</h4>
+                <span><span class="dot"></span> Online</span>
+            </div>
+        </div>
+        <button class="close-btn" id="chatbotClose"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="chatbot-messages" id="chatbotMessages"></div>
+    <div class="typing" id="typingIndicator">
+        <span></span><span></span><span></span>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Type your message..." maxlength="200">
+        <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+</div>
+
+<script src="js/script.js"></script>
+
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",

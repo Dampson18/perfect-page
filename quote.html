@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Request a Quote - Perfect Page Freight Logistics</title>
     <meta name="description" content="Get a free freight quote today. Fill out our quick form and we'll get back to you with competitive rates.">
+    <meta name="keywords" content="freight quote, shipping quote, logistics quote, cargo rates Ghana">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.perfectpagefreight.com/quote.html">
+    <meta property="og:title" content="Request a Quote - Perfect Page Freight Logistics">
+    <meta property="og:description" content="Get a free freight quote today. Fill out our quick form and we'll get back to you with competitive rates.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +27,7 @@
             border: 1px solid var(--gray-200);
             max-width: 800px;
             margin: 0 auto;
+            box-shadow: var(--shadow-md);
         }
         
         .quote-form .form-group {
@@ -65,6 +73,13 @@
         .quote-form select.error,
         .quote-form textarea.error {
             border-color: var(--danger);
+        }
+        
+        .quote-form .error-message {
+            color: var(--danger);
+            font-size: 13px;
+            margin-top: 4px;
+            display: block;
         }
         
         .quote-form textarea {
@@ -113,6 +128,112 @@
             margin-top: 16px;
         }
         
+        /* Success Message */
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 50px 40px;
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--success);
+            max-width: 600px;
+            margin: 0 auto;
+            animation: successFade 0.5s ease;
+        }
+        
+        @keyframes successFade {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .success-message .icon {
+            font-size: 64px;
+            color: var(--success);
+            margin-bottom: 16px;
+        }
+        
+        .success-message h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 12px;
+        }
+        
+        .success-message p {
+            color: var(--gray-600);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+        
+        .success-message .btn-group {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 24px;
+        }
+        
+        /* Quote Features */
+        .quote-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .quote-feature {
+            text-align: center;
+            padding: 24px 20px;
+            background: var(--white);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--gray-200);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .quote-feature:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+        
+        .quote-feature .icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 24px;
+            color: var(--primary-light);
+            transition: var(--transition-base);
+        }
+        
+        .quote-feature:hover .icon {
+            background: var(--gradient-accent);
+            color: var(--white);
+        }
+        
+        .quote-feature h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 4px;
+        }
+        
+        .quote-feature p {
+            font-size: 14px;
+            color: var(--gray-500);
+        }
+        
         @media (max-width: 768px) {
             .quote-form {
                 padding: 30px 20px;
@@ -122,23 +243,39 @@
                 grid-template-columns: 1fr;
                 gap: 0;
             }
+            
+            .quote-features {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .quote-form {
+                padding: 20px 16px;
+            }
+            
+            .success-message {
+                padding: 30px 20px;
+            }
+            
+            .success-message h2 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
+
 <!-- ==================== LOADER WITH MOTTO ==================== -->
 <div class="loader-overlay" id="loader">
     <div class="loader-container">
-        
-        <!-- Company Logo -->
         <div class="loader-logo">
             <div class="logo-icon">P</div>
             <span class="logo-text">
                 Perfect Page <span class="highlight">Freight</span>
             </span>
         </div>
-        
-        <!-- Animated Bars -->
         <div class="loader-bars">
             <div class="loader-bar"></div>
             <div class="loader-bar"></div>
@@ -149,13 +286,9 @@
             <div class="loader-bar"></div>
             <div class="loader-bar"></div>
         </div>
-        
-        <!-- Loading Text -->
         <div class="loader-text">
             Loading<span class="dots"><span>.</span><span>.</span><span>.</span></span>
         </div>
-        
-        <!-- Motto Section -->
         <div class="loader-motto">
             <div class="motto-line">
                 <span class="divider"></span>
@@ -173,8 +306,6 @@
                 <span></span>
             </div>
         </div>
-        
-        <!-- Hidden SVG for gradient -->
         <svg style="position: absolute; width: 0; height: 0;">
             <defs>
                 <linearGradient id="loaderGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -183,294 +314,340 @@
                 </linearGradient>
             </defs>
         </svg>
-        
     </div>
-</div>  
-    <!-- ==================== HEADER ==================== -->
-    <header class="header" id="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="logo">
-                    <div class="logo-icon"><span>P</span></div>
-                    <span class="logo-text">
-                        Perfect Page <span class="highlight">Freight</span>
-                        <span class="logo-badge">Logistics</span>
-                    </span>
+</div>
+
+<!-- ==================== HEADER ==================== -->
+<header class="header" id="header">
+    <div class="container">
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><span>P</span></div>
+                <span class="logo-text">
+                    Perfect Page <span class="highlight">Freight</span>
+                    <span class="logo-badge">Logistics</span>
+                </span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="about.html" class="nav-link">About Us</a></li>
+                <li class="dropdown">
+                    <a href="services.html" class="nav-link">
+                        Services <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
+                        <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
+                        <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
+                    </ul>
+                </li>
+                <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+                <li><a href="faq.html" class="nav-link">FAQ</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
+                    <i class="fas fa-phone"></i>
+                    <span class="btn-text">Call Now</span>
                 </a>
-                <ul class="nav-menu" id="navMenu">
-                    <li><a href="index.html" class="nav-link">Home</a></li>
-                    <li><a href="about.html" class="nav-link">About Us</a></li>
-                    <li class="dropdown">
-                        <a href="services.html" class="nav-link">
-                            Services <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="sea-freight.html"><i class="fas fa-ship"></i> Sea Freight</a></li>
-                            <li><a href="air-freight.html"><i class="fas fa-plane"></i> Air Freight</a></li>
-                            <li><a href="land-transport.html"><i class="fas fa-truck"></i> Land Transport</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-                    <li><a href="faq.html" class="nav-link">FAQ</a></li>
-                    <li><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-                <div class="nav-actions">
-                    <a href="tel:+233245359395" class="btn-nav btn-nav-ghost">
-                        <i class="fas fa-phone"></i>
-                        <span class="btn-text">Call Now</span>
-                    </a>
-                    <a href="quote.html" class="btn-nav btn-nav-primary">
-                        <i class="fas fa-paper-plane"></i>
-                        <span class="btn-text">Get Quote</span>
-                    </a>
-                    <div class="hamburger" id="hamburger">
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                        <span class="bar"></span>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
-    
-    <!-- ==================== MAIN CONTENT ==================== -->
-    <main>
-        
-        <!-- Page Hero -->
-        <section style="padding: 140px 0 70px; background: linear-gradient(135deg, #0A1628 0%, #1A3A5C 100%); color: var(--white);">
-            <div class="container">
-                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
-                    <span style="display: inline-block; background: rgba(255,255,255,0.1); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Get Started</span>
-                    <h1 style="font-size: 44px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;">Request a <span style="color: var(--primary-lighter);">Quote</span></h1>
-                    <p style="font-size: 18px; opacity: 0.85; line-height: 1.8;">
-                        Fill in the details below and we'll get back to you with a competitive, no-obligation freight quote.
-                    </p>
+                <a href="quote.html" class="btn-nav btn-nav-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    <span class="btn-text">Get Quote</span>
+                </a>
+                <div class="hamburger" id="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </div>
             </div>
-        </section>
-        
-        <!-- Quote Form -->
- <form class="quote-form" id="quoteForm" action="https://formsubmit.co/kelvinfaraday15@gmail.com" method="POST">
-    
-    <!-- Required hidden fields -->
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="hidden" name="_subject" value="New Quote Request - Perfect Page Freight">
-    <input type="hidden" name="_autoresponse" value="Thank you for your quote request! We'll get back to you within 24 hours. - Perfect Page Freight Logistics">
-    
-    <!-- REMOVE THIS LINE - it's causing the redirect issue -->
-    <!-- <input type="hidden" name="_next" value="https://www.perfectpagefreight.com/thank-you.html"> -->
-    
-    <div class="form-row">
-        <div class="form-group">
-            <label for="fullName">Full Name <span class="required">*</span></label>
-            <input type="text" id="fullName" name="Full Name" placeholder="Enter your full name" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone Number <span class="required">*</span></label>
-            <input type="tel" id="phone" name="Phone" placeholder="+233 XX XXX XXXX" required>
-        </div>
+        </nav>
     </div>
-    
-    <div class="form-group">
-        <label for="email">Email Address <span class="required">*</span></label>
-        <input type="email" id="email" name="Email" placeholder="you@example.com" required>
-    </div>
-    
-    <div class="form-row">
-        <div class="form-group">
-            <label for="cargoType">Cargo Type <span class="required">*</span></label>
-            <select id="cargoType" name="Cargo Type" required>
-                <option value="">Select cargo type...</option>
-                <option value="Container (FCL)">Container (FCL)</option>
-                <option value="Less than Container (LCL)">Less than Container (LCL)</option>
-                <option value="Air Cargo">Air Cargo</option>
-                <option value="Full Truckload">Full Truckload</option>
-                <option value="Less than Truckload">Less than Truckload</option>
-                <option value="Palletized Goods">Palletized Goods</option>
-                <option value="Oversized / Heavy Lift">Oversized / Heavy Lift</option>
-                <option value="Perishable Goods">Perishable Goods</option>
-                <option value="Other">Other</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="weight">Weight (kg) <span class="required">*</span></label>
-            <input type="number" id="weight" name="Weight (kg)" placeholder="e.g., 500" min="1" required>
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <label for="destination">Destination <span class="required">*</span></label>
-        <input type="text" id="destination" name="Destination" placeholder="City, Country (e.g., Tema, Ghana)" required>
-    </div>
-    
-    <div class="form-group">
-        <label for="origin">Origin</label>
-        <input type="text" id="origin" name="Origin" placeholder="Where is the cargo coming from? (Optional)">
-    </div>
-    
-    <div class="form-group">
-        <label for="serviceType">Service Type</label>
-        <select id="serviceType" name="Service Type">
-            <option value="">Select service...</option>
-            <option value="Sea Freight">Sea Freight</option>
-            <option value="Air Freight">Air Freight</option>
-            <option value="Land Transport">Land Transport</option>
-            <option value="Door-to-Door">Door-to-Door</option>
-            <option value="Customs Clearance Only">Customs Clearance Only</option>
-            <option value="Warehousing">Warehousing</option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label for="message">Additional Details</label>
-        <textarea id="message" name="Additional Details" placeholder="Any special requirements or additional information..."></textarea>
-    </div>
-    
-    <button type="submit" class="submit-btn">
-        <i class="fas fa-paper-plane"></i>
-        <span>Submit Quote Request</span>
-    </button>
-    <p class="form-note">
-        <i class="fas fa-lock" style="margin-right: 4px;"></i> 
-        Your information is secure. We'll respond within 24 hours.
-    </p>
-</form>
+</header>
 
-<!-- Success Message (Hidden by default) -->
-<div id="successMessage" style="display: none; text-align: center; padding: 40px; background: var(--white); border-radius: var(--radius-lg); border: 1px solid var(--success); max-width: 600px; margin: 0 auto;">
-    <div style="font-size: 60px; color: var(--success); margin-bottom: 16px;">
-        <i class="fas fa-check-circle"></i>
-    </div>
-    <h2 style="font-size: 28px; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px;">Thank You!</h2>
-    <p style="color: var(--gray-600); font-size: 17px; line-height: 1.8; margin-bottom: 8px;">
-        Your quote request has been sent successfully!
-    </p>
-    <p style="color: var(--gray-500); font-size: 15px;">
-        We'll get back to you within <strong style="color: var(--primary-light);">24 hours</strong>.
-    </p>
-    <div style="margin-top: 24px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-        <a href="index.html" class="btn btn-primary">
-            <i class="fas fa-home"></i> Return Home
-        </a>
-        <a href="quote.html" class="btn btn-secondary">
-            <i class="fas fa-paper-plane"></i> Send Another
-        </a>
-    </div>
-</div>       
-        <!-- Why Choose Us -->
-        <section style="padding: 60px 0; background: var(--off-white);">
-            <div class="container">
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1000px; margin: 0 auto;">
-                    <div style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: var(--primary-light);">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h4 style="font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 4px;">Fast Response</h4>
-                        <p style="font-size: 14px; color: var(--gray-500);">We respond within 24 hours</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: var(--primary-light);">
-                            <i class="fas fa-hand-holding-heart"></i>
-                        </div>
-                        <h4 style="font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 4px;">No Obligation</h4>
-                        <p style="font-size: 14px; color: var(--gray-500);">Free quotes with no commitment</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <div style="width: 60px; height: 60px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; font-size: 24px; color: var(--primary-light);">
-                            <i class="fas fa-star"></i>
-                        </div>
-                        <h4 style="font-size: 16px; font-weight: 700; color: var(--primary-dark); margin-bottom: 4px;">Trusted Service</h4>
-                        <p style="font-size: 14px; color: var(--gray-500);">Reliable freight forwarding since 2015</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-    </main>
+<!-- ==================== MAIN CONTENT ==================== -->
+<main>
     
-    <!-- ==================== FOOTER ==================== -->
-    <footer class="footer" id="footer">
+    <!-- Page Hero -->
+    <section style="padding: 140px 0 60px; background: linear-gradient(135deg, #0A1628 0%, #1A3A5C 100%); color: var(--white);">
         <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <a href="index.html" class="footer-logo">
-                        <img src="images/logo.png" alt="Perfect Page Freight">
-                        <span>Perfect Page <span class="logo-highlight">Freight</span></span>
-                    </a>
-                    <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
-                    <p class="footer-description">
-                        Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
-                    </p>
-                    <div class="footer-social">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="services.html">Our Services</a></li>
-                        <li><a href="gallery.html">Gallery</a></li>
-                        <li><a href="quote.html">Request Quote</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><a href="sea-freight.html">Sea Freight</a></li>
-                        <li><a href="air-freight.html">Air Freight</a></li>
-                        <li><a href="land-transport.html">Land Transport</a></li>
-                        <li><a href="#">Customs Clearance</a></li>
-                        <li><a href="#">Warehousing</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Contact Us</h4>
-                    <ul class="footer-contact">
-                        <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
-                        <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
-                        <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
-                        <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
-                <div class="footer-bottom-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Terms of Service</a>
+            <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                <span style="display: inline-block; background: rgba(255,255,255,0.1); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.05);">
+                    <i class="fas fa-file-invoice" style="margin-right: 6px;"></i> Get Started
+                </span>
+                <h1 style="font-size: 44px; font-weight: 800; margin-bottom: 16px; letter-spacing: -1px;">Request a <span style="color: var(--primary-lighter);">Quote</span></h1>
+                <p style="font-size: 18px; opacity: 0.85; line-height: 1.8;">
+                    Fill in the details below and we'll get back to you with a competitive, no-obligation freight quote within 24 hours.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 20px;">
+                    <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; opacity: 0.7;">
+                        <i class="fas fa-check-circle" style="color: var(--primary-lighter);"></i> Free Quote
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; opacity: 0.7;">
+                        <i class="fas fa-check-circle" style="color: var(--primary-lighter);"></i> No Obligation
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 6px; font-size: 14px; opacity: 0.7;">
+                        <i class="fas fa-check-circle" style="color: var(--primary-lighter);"></i> 24hr Response
+                    </span>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
     
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
-       class="whatsapp-float" 
-       target="_blank"
-       aria-label="Chat on WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-tooltip">Chat with us!</span>
-    </a>
-<!-- ==================== CHATBOT ==================== -->
+    <!-- Quote Form Section -->
+    <section style="padding: 40px 0 60px;">
+        <div class="container">
+            
+            <!-- Form -->
+            <form class="quote-form" id="quoteForm" action="https://formsubmit.co/kelvinfaraday15@gmail.com" method="POST">
+                
+                <!-- Required hidden fields -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="New Quote Request - Perfect Page Freight">
+                <input type="hidden" name="_autoresponse" value="Thank you for your quote request! We'll get back to you within 24 hours. - Perfect Page Freight Logistics">
+                
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <h2 style="font-size: 24px; font-weight: 700; color: var(--primary-dark);">Tell Us About Your Shipment</h2>
+                    <p style="color: var(--gray-500); font-size: 14px;">Fill in the details and we'll prepare a custom quote for you</p>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="Full Name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="Phone" placeholder="+233 XX XXX XXXX" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="Email" placeholder="you@example.com" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cargoType">Cargo Type <span class="required">*</span></label>
+                        <select id="cargoType" name="Cargo Type" required>
+                            <option value="">Select cargo type...</option>
+                            <option value="Container (FCL)">Container (FCL)</option>
+                            <option value="Less than Container (LCL)">Less than Container (LCL)</option>
+                            <option value="Air Cargo">Air Cargo</option>
+                            <option value="Full Truckload">Full Truckload</option>
+                            <option value="Less than Truckload">Less than Truckload</option>
+                            <option value="Palletized Goods">Palletized Goods</option>
+                            <option value="Oversized / Heavy Lift">Oversized / Heavy Lift</option>
+                            <option value="Perishable Goods">Perishable Goods</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Weight (kg) <span class="required">*</span></label>
+                        <input type="number" id="weight" name="Weight (kg)" placeholder="e.g., 500" min="1" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="destination">Destination <span class="required">*</span></label>
+                    <input type="text" id="destination" name="Destination" placeholder="City, Country (e.g., Tema, Ghana)" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="origin">Origin</label>
+                    <input type="text" id="origin" name="Origin" placeholder="Where is the cargo coming from? (Optional)">
+                </div>
+                
+                <div class="form-group">
+                    <label for="serviceType">Service Type</label>
+                    <select id="serviceType" name="Service Type">
+                        <option value="">Select service...</option>
+                        <option value="Sea Freight">Sea Freight</option>
+                        <option value="Air Freight">Air Freight</option>
+                        <option value="Land Transport">Land Transport</option>
+                        <option value="Door-to-Door">Door-to-Door</option>
+                        <option value="Customs Clearance Only">Customs Clearance Only</option>
+                        <option value="Warehousing">Warehousing</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Additional Details</label>
+                    <textarea id="message" name="Additional Details" placeholder="Any special requirements or additional information..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Submit Quote Request</span>
+                </button>
+                <p class="form-note">
+                    <i class="fas fa-lock" style="margin-right: 4px;"></i> 
+                    Your information is secure. We'll respond within 24 hours.
+                </p>
+            </form>
+            
+            <!-- Success Message -->
+            <div id="successMessage" class="success-message">
+                <div class="icon"><i class="fas fa-check-circle"></i></div>
+                <h2>Quote Request Sent!</h2>
+                <p>Thank you for your quote request. Our team will review your details and get back to you with a competitive quote within <strong>24 hours</strong>.</p>
+                <div class="btn-group">
+                    <a href="index.html" class="btn btn-primary">
+                        <i class="fas fa-home"></i> Return Home
+                    </a>
+                    <a href="quote.html" class="btn btn-secondary">
+                        <i class="fas fa-paper-plane"></i> Send Another
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Quote Features -->
+    <section style="padding: 60px 0; background: var(--off-white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
+                <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Why Us</span>
+                <h2 style="font-size: 28px; font-weight: 800; color: var(--primary-dark); margin-top: 8px;">Why Get a Quote From <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Perfect Page</span> Freight?</h2>
+            </div>
+            <div class="quote-features">
+                <div class="quote-feature">
+                    <div class="icon"><i class="fas fa-clock"></i></div>
+                    <h4>Fast Response</h4>
+                    <p>We respond within 24 hours with a competitive quote</p>
+                </div>
+                <div class="quote-feature">
+                    <div class="icon"><i class="fas fa-hand-holding-heart"></i></div>
+                    <h4>No Obligation</h4>
+                    <p>Free quotes with no commitment — you're in control</p>
+                </div>
+                <div class="quote-feature">
+                    <div class="icon"><i class="fas fa-star"></i></div>
+                    <h4>Trusted Service</h4>
+                    <p>Reliable freight forwarding since 2015 with 1200+ happy clients</p>
+                </div>
+                <div class="quote-feature">
+                    <div class="icon"><i class="fas fa-ship"></i></div>
+                    <h4>Multi-Modal Expertise</h4>
+                    <p>Sea, air, and land transport — we handle it all</p>
+                </div>
+                <div class="quote-feature">
+                    <div class="icon"><i class="fas fa-calculator"></i></div>
+                    <h4>Competitive Rates</h4>
+                    <p>We leverage our network to get you the best prices</p>
+                </div>
+                <div class="quote-feature">
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <h4>Dedicated Support</h4>
+                    <p>Our team is here to guide you through every step</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Quick Contact CTA -->
+    <section style="padding: 60px 0; background: var(--white);">
+        <div class="container">
+            <div style="text-align: center; max-width: 600px; margin: 0 auto;">
+                <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Need Immediate Help?</span>
+                <h2 style="font-size: 28px; font-weight: 800; color: var(--primary-dark); margin-bottom: 12px;">Prefer to Talk to Someone?</h2>
+                <p style="color: var(--gray-600); margin-bottom: 20px; line-height: 1.8;">
+                    We're available Monday-Friday, 8am-6pm. Call us directly for immediate assistance.
+                </p>
+                <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+                    <a href="tel:+233245359395" class="btn btn-primary">
+                        <i class="fas fa-phone"></i> Call Now
+                    </a>
+                    <a href="contact.html" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i> Contact Form
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+</main>
 
-<!-- Chatbot Toggle Button -->
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="index.html" class="footer-logo">
+                    <img src="images/logo.png" alt="Perfect Page Freight">
+                    <span>Perfect Page <span class="logo-highlight">Freight</span></span>
+                </a>
+                <p class="footer-motto">Reliable Freight Forwarder, Your Success Our Priority.</p>
+                <p class="footer-description">
+                    Providing trusted sea, air, and land freight forwarding services across Ghana and worldwide.
+                </p>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="quote.html">Request Quote</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="sea-freight.html">Sea Freight</a></li>
+                    <li><a href="air-freight.html">Air Freight</a></li>
+                    <li><a href="land-transport.html">Land Transport</a></li>
+                    <li><a href="#">Customs Clearance</a></li>
+                    <li><a href="#">Warehousing</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Us</h4>
+                <ul class="footer-contact">
+                    <li><i class="fas fa-envelope"></i> <a href="mailto:info@perfectpagefreight.com">info@perfectpagefreight.com</a></li>
+                    <li><i class="fas fa-phone"></i> <a href="tel:+233245359395">+233 24 535 9395</a></li>
+                    <li><i class="fas fa-whatsapp"></i> <a href="https://wa.me/233245359395" target="_blank">WhatsApp: +233 24 535 9395</a></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span>Accra, Ghana</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Perfect Page Freight Logistics. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/233245359395?text=Hi%20Perfect%20Page%20Freight%2C%20I%20have%20a%20question%20about%3A%20" 
+   class="whatsapp-float" 
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="whatsapp-tooltip">Chat with us!</span>
+</a>
+
+<!-- ==================== CHATBOT ==================== -->
 <button class="chatbot-toggle" id="chatbotToggle">
     <span class="chat-icon"><i class="fas fa-comment-dots"></i></span>
     <span class="close-icon"><i class="fas fa-times"></i></span>
     <span class="badge">1</span>
 </button>
 
-<!-- Chatbot Window -->
 <div class="chatbot-window" id="chatbotWindow">
-    
-    <!-- Header -->
     <div class="chatbot-header">
         <div class="info">
             <div class="avatar"><i class="fas fa-ship"></i></div>
@@ -481,26 +658,117 @@
         </div>
         <button class="close-btn" id="chatbotClose"><i class="fas fa-times"></i></button>
     </div>
-    
-    <!-- Messages -->
     <div class="chatbot-messages" id="chatbotMessages"></div>
-    
-    <!-- Typing Indicator -->
     <div class="typing" id="typingIndicator">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
-    
-    <!-- Input -->
     <div class="chatbot-input">
         <input type="text" id="chatbotInput" placeholder="Type your message..." maxlength="200">
         <button id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
     </div>
+</div>
+
+<script src="js/script.js"></script>
+
+<script>
+// Quote Form Handler - Enhanced
+document.addEventListener('DOMContentLoaded', function() {
+    const quoteForm = document.getElementById('quoteForm');
+    const successMessage = document.getElementById('successMessage');
     
-</div> 
-    <script src="js/script.js"></script>
-    <script type="application/ld+json">
+    if (quoteForm) {
+        quoteForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate form
+            let isValid = true;
+            const requiredFields = this.querySelectorAll('[required]');
+            
+            // Remove old errors
+            this.querySelectorAll('.error-message').forEach(el => el.remove());
+            this.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    field.classList.add('error');
+                    
+                    const errorMsg = document.createElement('span');
+                    errorMsg.className = 'error-message';
+                    errorMsg.textContent = 'This field is required';
+                    field.parentElement.appendChild(errorMsg);
+                }
+                
+                if (field.type === 'email' && field.value.trim()) {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(field.value.trim())) {
+                        isValid = false;
+                        field.classList.add('error');
+                        
+                        const errorMsg = document.createElement('span');
+                        errorMsg.className = 'error-message';
+                        errorMsg.textContent = 'Please enter a valid email address';
+                        field.parentElement.appendChild(errorMsg);
+                    }
+                }
+                
+                if (field.type === 'tel' && field.value.trim()) {
+                    const phoneRegex = /^[\+\d\s\-\(\)]{8,20}$/;
+                    if (!phoneRegex.test(field.value.trim())) {
+                        isValid = false;
+                        field.classList.add('error');
+                        
+                        const errorMsg = document.createElement('span');
+                        errorMsg.className = 'error-message';
+                        errorMsg.textContent = 'Please enter a valid phone number';
+                        field.parentElement.appendChild(errorMsg);
+                    }
+                }
+            });
+            
+            if (!isValid) return;
+            
+            // Submit the form
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            fetch(this.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Hide form, show success message
+                    this.style.display = 'none';
+                    if (successMessage) {
+                        successMessage.style.display = 'block';
+                    }
+                    this.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                submitBtn.innerHTML = '❌ Failed to Send';
+                submitBtn.style.background = '#EF4444';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                }, 3000);
+                console.error('Error:', error);
+            });
+        });
+    }
+});
+</script>
+
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
