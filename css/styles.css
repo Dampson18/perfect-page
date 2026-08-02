@@ -7,6 +7,7 @@
    ======================================== */
 
 :root {
+    /* Primary Colors - Blue Shades */
     --primary-dark: #0A1628;
     --primary-deep: #0D2137;
     --primary-blue: #1A3A5C;
@@ -17,6 +18,7 @@
     --primary-lightest: #93BBFC;
     --primary-glow: rgba(59, 130, 246, 0.3);
     
+    /* Neutral Colors */
     --white: #FFFFFF;
     --off-white: #F1F5F9;
     --gray-50: #F8FAFC;
@@ -31,17 +33,20 @@
     --gray-900: #0F172A;
     --black: #0B1120;
     
+    /* Accent Colors */
     --success: #10B981;
     --success-dark: #059669;
     --warning: #F59E0B;
     --danger: #EF4444;
     --info: #06B6D4;
     
+    /* Gradients */
     --gradient-primary: linear-gradient(135deg, #0A1628 0%, #1A3A5C 50%, #2563EB 100%);
     --gradient-light: linear-gradient(135deg, #F1F5F9 0%, #E2E8F0 100%);
     --gradient-accent: linear-gradient(135deg, #3B82F6 0%, #60A5FA 100%);
     --gradient-glow: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
     
+    /* Shadows */
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.12);
@@ -50,18 +55,40 @@
     --shadow-glow: 0 0 40px rgba(59, 130, 246, 0.2);
     --shadow-glow-hover: 0 0 60px rgba(59, 130, 246, 0.35);
     
+    /* Typography */
     --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Fluid Typography (min, preferred-vw, max) via clamp() */
+    --fs-hero-title: clamp(1.75rem, 1.1rem + 3.2vw, 3rem);
+    --fs-section-title: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+    --fs-cta-title: clamp(1.5rem, 1.1rem + 1.8vw, 2.25rem);
+    --fs-hero-desc: clamp(0.95rem, 0.85rem + 0.5vw, 1.125rem);
+    --fs-stat-number: clamp(1.375rem, 1.1rem + 1.2vw, 2rem);
+
+    /* Fluid Spacing */
+    --space-section: clamp(3.5rem, 2.5rem + 4vw, 6.25rem);
+    --space-section-sm: clamp(2.75rem, 2rem + 3vw, 4.375rem);
+
+    /* Safe-area insets for notched devices */
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
     
+    /* Spacing */
     --container-width: 1200px;
-    --section-padding: 100px 0;
-    --section-padding-sm: 70px 0;
+    --container-width-wide: 1440px;
+    --section-padding: var(--space-section) 0;
+    --section-padding-sm: var(--space-section-sm) 0;
     
+    /* Border Radius */
     --radius-sm: 6px;
     --radius-md: 12px;
     --radius-lg: 20px;
     --radius-xl: 28px;
     --radius-full: 50%;
     
+    /* Transitions */
     --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-base: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -70,7 +97,7 @@
 }
 
 /* ========================================
-   2. RESET & BASE STYLES - FIXED OVERFLOW
+   2. RESET & BASE STYLES
    ======================================== */
 
 *,
@@ -85,6 +112,11 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    /* Prevents iOS text auto-inflation on rotate, keeps rem scaling predictable */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* Locks the viewport so full-bleed elements (100vw) can never open up
+       sideways scroll, and the page never wobbles horizontally on mobile */
     overflow-x: hidden;
     width: 100%;
 }
@@ -100,6 +132,8 @@ body {
     position: relative;
     opacity: 0;
     animation: fadeInBody 0.6s ease forwards 0.1s;
+    /* Guard against horizontal scroll from any oversized child on small screens */
+    min-width: 320px;
 }
 
 @keyframes fadeInBody {
@@ -129,6 +163,55 @@ ul {
     margin: 0 auto;
     padding: 0 24px;
     width: 100%;
+}
+
+/* ========================================
+   ACCESSIBILITY: FOCUS STATES & MOTION
+   ======================================== */
+
+/* Consistent, visible keyboard focus across all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+.btn:focus-visible,
+.nav-link:focus-visible,
+.service-card:focus-visible,
+.qr-btn:focus-visible,
+.chatbot-toggle:focus-visible,
+.whatsapp-float:focus-visible,
+.hamburger:focus-visible {
+    outline: 2.5px solid var(--primary-light);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+}
+
+/* Remove default mouse-click outline while preserving keyboard outline above */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Respect users who have requested reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    body {
+        opacity: 1;
+        animation: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 /* ========================================
@@ -176,6 +259,8 @@ ul {
     position: relative;
     overflow: hidden;
     letter-spacing: 0.3px;
+    /* Comfortable touch target on all devices */
+    min-height: 48px;
 }
 
 .btn i {
@@ -254,10 +339,11 @@ ul {
     padding: 10px 24px;
     font-size: 14px;
     border-radius: var(--radius-sm);
+    min-height: 40px;
 }
 
 /* ========================================
-   5. HEADER / NAVIGATION - STICKY FIXED
+   5. HEADER / NAVIGATION - FIXED
    ======================================== */
 
 .header {
@@ -267,28 +353,12 @@ ul {
     right: 0;
     z-index: 1000;
     padding: 0;
+    padding-top: var(--safe-top);
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     background: rgba(255, 255, 255, 0.78);
     backdrop-filter: blur(24px) saturate(180%);
     -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-    width: 100%;
-}
-
-.header::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(59, 130, 246, 0.08) 20%, 
-        rgba(59, 130, 246, 0.2) 50%, 
-        rgba(59, 130, 246, 0.08) 80%, 
-        transparent 100%
-    );
 }
 
 .header.scrolled {
@@ -321,10 +391,6 @@ ul {
     transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     gap: 10px;
-    width: 100%;
-    max-width: var(--container-width);
-    margin: 0 auto;
-    padding: 0 24px;
 }
 
 /* ========================================
@@ -509,7 +575,8 @@ ul {
     list-style: none;
 }
 
-.dropdown:hover .dropdown-menu {
+.dropdown:hover .dropdown-menu,
+.dropdown:focus-within .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0) scale(1);
@@ -602,6 +669,7 @@ ul {
     text-decoration: none;
     font-family: var(--font-primary);
     white-space: nowrap;
+    min-height: 40px;
 }
 
 .nav-actions .btn-nav i {
@@ -637,7 +705,7 @@ ul {
 }
 
 /* ========================================
-   HAMBURGER MENU
+   HAMBURGER MENU - FIXED
    ======================================== */
 
 .hamburger {
@@ -655,6 +723,11 @@ ul {
     flex-shrink: 0;
     position: relative;
     margin-left: 4px;
+    /* Comfortable touch target */
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
 }
 
 .hamburger:hover {
@@ -756,6 +829,7 @@ ul {
         left: -100%;
         width: 100%;
         height: 100vh;
+        height: 100dvh;
         background: rgba(255, 255, 255, 0.98);
         backdrop-filter: blur(30px) saturate(200%);
         -webkit-backdrop-filter: blur(30px) saturate(200%);
@@ -764,8 +838,9 @@ ul {
         align-items: center;
         gap: 0;
         transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        padding: 90px 20px 40px;
+        padding: calc(90px + var(--safe-top)) 20px calc(40px + var(--safe-bottom));
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
         margin: 0;
         z-index: 1000;
     }
@@ -782,6 +857,7 @@ ul {
         justify-content: center;
         border-radius: var(--radius-sm);
         border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+        min-height: 44px;
     }
     
     .nav-menu .nav-link::before,
@@ -888,7 +964,6 @@ ul {
     .nav-menu.active .nav-link:nth-child(4) { animation-delay: 0.2s; }
     .nav-menu.active .nav-link:nth-child(5) { animation-delay: 0.25s; }
     .nav-menu.active .nav-link:nth-child(6) { animation-delay: 0.3s; }
-    .nav-menu.active .nav-link:nth-child(7) { animation-delay: 0.35s; }
     
     @keyframes mobileNavIn {
         to {
@@ -960,7 +1035,10 @@ ul {
     
     /* Mobile Menu */
     .nav-menu {
-        padding: 80px 16px 30px;
+        padding-top: calc(80px + var(--safe-top));
+        padding-left: 16px;
+        padding-right: 16px;
+        padding-bottom: calc(30px + var(--safe-bottom));
     }
     
     .nav-menu .nav-link {
@@ -971,6 +1049,27 @@ ul {
     .dropdown-menu li a {
         font-size: 14px;
         padding: 10px 16px;
+    }
+}
+
+/* Very small phones - 360px and below (e.g. Galaxy Fold, older SE) */
+@media (max-width: 360px) {
+    .container {
+        padding: 0 16px;
+    }
+
+    .logo-text {
+        font-size: 14px;
+    }
+
+    .logo .logo-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 13px;
+    }
+
+    .nav-actions .btn-nav-primary {
+        padding: 6px 8px;
     }
 }
 
@@ -985,13 +1084,14 @@ ul {
 
 .hero {
     padding: 140px 0 80px;
+    padding-top: calc(140px + var(--safe-top));
     position: relative;
     overflow: hidden;
     background: var(--off-white);
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
-    width: 100%;
 }
 
 .hero::before {
@@ -1043,7 +1143,6 @@ ul {
     align-items: center;
     position: relative;
     z-index: 1;
-    width: 100%;
 }
 
 .hero-text {
@@ -1074,6 +1173,16 @@ ul {
     margin-bottom: 20px;
     border: 1px solid rgba(59, 130, 246, 0.1);
     backdrop-filter: blur(10px);
+    animation: pulseBadge 2s ease-in-out infinite;
+}
+
+@keyframes pulseBadge {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
 }
 
 .hero-badge .dot {
@@ -1095,7 +1204,7 @@ ul {
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: var(--fs-hero-title);
     font-weight: 800;
     line-height: 1.1;
     color: var(--primary-dark);
@@ -1109,10 +1218,11 @@ ul {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    position: relative;
 }
 
 .hero-description {
-    font-size: 18px;
+    font-size: var(--fs-hero-desc);
     color: var(--gray-600);
     max-width: 520px;
     margin-bottom: 30px;
@@ -1141,7 +1251,7 @@ ul {
 }
 
 .stat-number {
-    font-size: 32px;
+    font-size: var(--fs-stat-number);
     font-weight: 800;
     color: var(--primary-dark);
     letter-spacing: -1px;
@@ -1159,13 +1269,13 @@ ul {
     font-size: 13px;
     color: var(--gray-500);
     font-weight: 500;
+    letter-spacing: 0.3px;
 }
 
 .hero-image {
     position: relative;
     animation: fadeInUp 0.8s ease forwards 0.4s;
     opacity: 0;
-    width: 100%;
 }
 
 .hero-image .image-wrapper {
@@ -1249,9 +1359,31 @@ ul {
    RESPONSIVE HERO
    ======================================== */
 
+/* Ultra-wide screens: cap growth and add breathing room */
+@media (min-width: 1440px) {
+    .container {
+        max-width: var(--container-width-wide);
+    }
+
+    .hero-image img {
+        height: 460px;
+    }
+
+    .hero-content {
+        gap: 80px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+}
+
 @media (max-width: 1024px) {
     .hero {
         padding: 120px 0 60px;
+        padding-top: calc(120px + var(--safe-top));
         min-height: auto;
     }
     
@@ -1259,10 +1391,6 @@ ul {
         grid-template-columns: 1fr;
         gap: 40px;
         text-align: center;
-    }
-    
-    .hero-title {
-        font-size: 38px;
     }
     
     .hero-description {
@@ -1287,29 +1415,37 @@ ul {
     }
 }
 
+/* Below tablet, the hero photo goes full-bleed: it fills the entire screen
+   width edge-to-edge (breaking out of .container's side padding) and covers
+   a fixed share of the viewport height, instead of shrinking into a small
+   inset box. object-fit: cover (set on .hero-image img above) keeps the
+   photo filling that box without distorting it. */
 @media (max-width: 768px) {
     .hero {
         padding: 100px 0 50px;
-    }
-    
-    .hero-title {
-        font-size: 30px;
-    }
-    
-    .hero-description {
-        font-size: 16px;
+        padding-top: calc(100px + var(--safe-top));
     }
     
     .hero-stats {
         gap: 20px;
     }
-    
-    .stat-number {
-        font-size: 26px;
+
+    .hero-image {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
     }
-    
+
+    .hero-image .image-wrapper {
+        border-radius: 0;
+        box-shadow: none;
+    }
+
     .hero-image img {
-        height: 220px;
+        width: 100vw;
+        height: 55vh;
+        height: 55dvh;
+        min-height: 320px;
     }
     
     .hero-floating-card {
@@ -1320,10 +1456,7 @@ ul {
 @media (max-width: 480px) {
     .hero {
         padding: 90px 0 40px;
-    }
-    
-    .hero-title {
-        font-size: 26px;
+        padding-top: calc(90px + var(--safe-top));
     }
     
     .hero-buttons {
@@ -1337,7 +1470,9 @@ ul {
     }
     
     .hero-image img {
-        height: 180px;
+        height: 48vh;
+        height: 48dvh;
+        min-height: 260px;
     }
     
     .hero-stats {
@@ -1345,12 +1480,26 @@ ul {
         justify-content: center;
     }
     
-    .stat-number {
-        font-size: 22px;
-    }
-    
     .stat-label {
         font-size: 11px;
+    }
+}
+
+/* Very short landscape phones: keep the full-bleed photo from eating the
+   whole visible area since vh/dvh is tiny in landscape */
+@media (max-width: 768px) and (max-height: 480px) and (orientation: landscape) {
+    .hero-image img {
+        height: 200px;
+        min-height: 0;
+    }
+}
+
+/* Short/landscape phones: relax the min-height & vertical padding so content isn't cropped */
+@media (max-height: 480px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: calc(110px + var(--safe-top));
+        padding-bottom: 40px;
     }
 }
 
@@ -1381,7 +1530,7 @@ ul {
 }
 
 .section-title {
-    font-size: 36px;
+    font-size: var(--fs-section-title);
     font-weight: 800;
     color: var(--primary-dark);
     margin-bottom: 12px;
@@ -1403,18 +1552,8 @@ ul {
 }
 
 @media (max-width: 768px) {
-    .section-title {
-        font-size: 28px;
-    }
-    
     .section-description {
         font-size: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 24px;
     }
 }
 
@@ -1426,14 +1565,12 @@ ul {
     padding: var(--section-padding);
     background: var(--white);
     position: relative;
-    width: 100%;
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
     gap: 30px;
-    width: 100%;
 }
 
 .service-card {
@@ -1535,23 +1672,17 @@ ul {
     transform: translateX(6px);
 }
 
-@media (max-width: 1024px) {
-    .services-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .service-card {
         padding: 32px 20px;
     }
 }
 
 @media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
     .service-card {
         padding: 24px 16px;
     }
@@ -1576,7 +1707,6 @@ ul {
     background: var(--off-white);
     position: relative;
     overflow: hidden;
-    width: 100%;
 }
 
 .why-choose-grid {
@@ -1586,7 +1716,6 @@ ul {
     align-items: center;
     position: relative;
     z-index: 1;
-    width: 100%;
 }
 
 .why-choose-image {
@@ -1681,9 +1810,34 @@ ul {
     }
 }
 
+/* Full-bleed on mobile: the image covers the full screen width edge-to-edge
+   rather than sitting inset with padding on either side. */
 @media (max-width: 768px) {
     .why-choose-list li {
         padding: 14px 16px;
+    }
+
+    .why-choose-image {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .why-choose-image img {
+        width: 100vw;
+        height: 50vh;
+        height: 50dvh;
+        min-height: 280px;
+    }
+}
+
+@media (max-width: 480px) {
+    .why-choose-image img {
+        height: 42vh;
+        height: 42dvh;
+        min-height: 220px;
     }
 }
 
@@ -1694,14 +1848,12 @@ ul {
 .testimonials {
     padding: var(--section-padding);
     background: var(--white);
-    width: 100%;
 }
 
 .testimonials-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 30px;
-    width: 100%;
 }
 
 .testimonial-card {
@@ -1777,12 +1929,6 @@ ul {
     color: var(--gray-500);
 }
 
-@media (max-width: 1024px) {
-    .testimonials-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
 @media (max-width: 768px) {
     .testimonials-grid {
         grid-template-columns: 1fr;
@@ -1804,7 +1950,6 @@ ul {
     text-align: center;
     position: relative;
     overflow: hidden;
-    width: 100%;
 }
 
 .cta-section::before {
@@ -1851,7 +1996,7 @@ ul {
 }
 
 .cta-content h2 {
-    font-size: 36px;
+    font-size: var(--fs-cta-title);
     font-weight: 800;
     margin-bottom: 12px;
     letter-spacing: -0.5px;
@@ -1882,18 +2027,8 @@ ul {
         padding: 60px 0;
     }
     
-    .cta-content h2 {
-        font-size: 28px;
-    }
-    
     .cta-content p {
         font-size: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .cta-content h2 {
-        font-size: 24px;
     }
 }
 
@@ -1905,8 +2040,8 @@ ul {
     background: var(--black);
     color: rgba(255, 255, 255, 0.7);
     padding: 60px 0 0;
+    padding-bottom: var(--safe-bottom);
     position: relative;
-    width: 100%;
 }
 
 .footer::before {
@@ -1925,7 +2060,6 @@ ul {
     gap: 40px;
     padding-bottom: 40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    width: 100%;
 }
 
 .footer-logo {
@@ -2108,8 +2242,8 @@ ul {
 
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: calc(30px + var(--safe-bottom));
+    right: calc(30px + var(--safe-right));
     z-index: 999;
     width: 60px;
     height: 60px;
@@ -2181,8 +2315,8 @@ ul {
         width: 52px;
         height: 52px;
         font-size: 28px;
-        bottom: 20px;
-        right: 20px;
+        bottom: calc(20px + var(--safe-bottom));
+        right: calc(20px + var(--safe-right));
     }
     
     .whatsapp-tooltip {
@@ -2192,11 +2326,11 @@ ul {
 
 @media (max-width: 480px) {
     .whatsapp-float {
-        width: 46px;
-        height: 46px;
+        width: 48px;
+        height: 48px;
         font-size: 24px;
-        bottom: 16px;
-        right: 16px;
+        bottom: calc(16px + var(--safe-bottom));
+        right: calc(16px + var(--safe-right));
     }
 }
 
@@ -2220,10 +2354,6 @@ ul {
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.no-scroll {
-    overflow: hidden !important;
 }
 
 /* ========================================
@@ -2314,6 +2444,7 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
+    height: 100dvh;
     background: var(--white);
     z-index: 99999;
     display: flex;
@@ -2662,13 +2793,13 @@ ul {
 }
 
 /* ========================================
-   17. CHATBOT
+   17. CHATBOT - FIXED POSITION
    ======================================== */
 
 .chatbot-toggle {
     position: fixed;
-    bottom: 100px;
-    right: 20px;
+    bottom: calc(100px + var(--safe-bottom));
+    right: calc(20px + var(--safe-right));
     z-index: 999;
     width: 56px;
     height: 56px;
@@ -2727,13 +2858,13 @@ ul {
 
 .chatbot-window {
     position: fixed;
-    bottom: 170px;
-    right: 20px;
+    bottom: calc(170px + var(--safe-bottom));
+    right: calc(20px + var(--safe-right));
     z-index: 998;
     width: 360px;
     max-width: calc(100vw - 40px);
     height: 460px;
-    max-height: 460px;
+    max-height: min(460px, 70dvh);
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -2848,6 +2979,7 @@ ul {
     flex: 1;
     padding: 12px 14px 10px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     background: #F8FAFC;
     display: flex;
     flex-direction: column;
@@ -2993,7 +3125,8 @@ ul {
     border: 2px solid #E2E8F0;
     border-radius: 8px;
     font-family: inherit;
-    font-size: 12px;
+    /* 16px minimum prevents iOS Safari from auto-zooming on focus */
+    font-size: 16px;
     outline: none;
     background: #F8FAFC;
     min-width: 0;
@@ -3019,6 +3152,8 @@ ul {
     cursor: pointer;
     transition: all 0.3s ease;
     flex-shrink: 0;
+    min-height: 36px;
+    min-width: 44px;
 }
 
 .chatbot-input button:hover {
@@ -3032,40 +3167,40 @@ ul {
 
 @media (max-width: 768px) {
     .chatbot-toggle {
-        bottom: 85px;
-        right: 15px;
+        bottom: calc(85px + var(--safe-bottom));
+        right: calc(15px + var(--safe-right));
         width: 48px;
         height: 48px;
         font-size: 20px;
     }
     
     .chatbot-window {
-        bottom: 145px;
-        right: 15px;
+        bottom: calc(145px + var(--safe-bottom));
+        right: calc(15px + var(--safe-right));
         width: 320px;
         max-width: calc(100vw - 30px);
         height: 400px;
-        max-height: 400px;
+        max-height: min(400px, 65dvh);
     }
 }
 
 @media (max-width: 480px) {
     .chatbot-toggle {
-        bottom: 70px;
-        right: 12px;
-        width: 42px;
-        height: 42px;
+        bottom: calc(70px + var(--safe-bottom));
+        right: calc(12px + var(--safe-right));
+        width: 44px;
+        height: 44px;
         font-size: 18px;
     }
     
     .chatbot-window {
-        bottom: 120px;
-        right: 10px;
-        left: 10px;
+        bottom: calc(120px + var(--safe-bottom));
+        right: calc(10px + var(--safe-right));
+        left: calc(10px + var(--safe-left));
         width: auto;
         max-width: none;
         height: 360px;
-        max-height: 360px;
+        max-height: min(360px, 60dvh);
         border-radius: 12px;
     }
     
@@ -3118,13 +3253,42 @@ ul {
         gap: 5px;
     }
     
-    .chatbot-input input {
-        font-size: 11px;
-        padding: 5px 10px;
-    }
-    
     .chatbot-input button {
         padding: 5px 12px;
         font-size: 12px;
+    }
+}
+
+/* Landscape phones: keep the chat window from overrunning the short viewport */
+@media (max-height: 480px) and (orientation: landscape) {
+    .chatbot-window {
+        height: min(320px, 80dvh);
+        max-height: min(320px, 80dvh);
+        bottom: calc(80px + var(--safe-bottom));
+    }
+
+    .chatbot-toggle {
+        bottom: calc(20px + var(--safe-bottom));
+    }
+
+    .whatsapp-float {
+        bottom: calc(20px + var(--safe-bottom));
+    }
+}
+
+/* Print: strip fixed UI and decorative chrome that don't belong on paper */
+@media print {
+    .header,
+    .whatsapp-float,
+    .chatbot-toggle,
+    .chatbot-window,
+    .hamburger,
+    .loader-overlay {
+        display: none !important;
+    }
+
+    body {
+        opacity: 1;
+        animation: none;
     }
 }
