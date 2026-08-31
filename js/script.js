@@ -42,6 +42,19 @@
 document.addEventListener('DOMContentLoaded', function() {
     
     'use strict';
+
+    // Replace the placeholder with the real GA4 measurement ID when ready.
+    const analyticsId = 'G-XXXXXXXXXX';
+    if (analyticsId !== 'G-XXXXXXXXXX') {
+        const analyticsScript = document.createElement('script');
+        analyticsScript.async = true;
+        analyticsScript.src = `https://www.googletagmanager.com/gtag/js?id=${analyticsId}`;
+        document.head.appendChild(analyticsScript);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function() { window.dataLayer.push(arguments); };
+        window.gtag('js', new Date());
+        window.gtag('config', analyticsId);
+    }
     
     // ========================================
     // 1. MOBILE HAMBURGER MENU - FIXED
@@ -63,6 +76,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const navLinks = navMenu.querySelectorAll('.nav-link');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
+                if (this.closest('.dropdown')) {
+                    return;
+                }
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
                 document.body.classList.remove('no-scroll');
@@ -83,10 +99,74 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Only on mobile
                 if (window.innerWidth <= 768) {
                     e.preventDefault();
+                    e.stopPropagation();
                     dropdown.classList.toggle('active');
                 }
             });
         }
+    });
+
+    if (navMenu && !navMenu.querySelector('.resource-dropdown')) {
+        const resourceItem = document.createElement('li');
+        resourceItem.className = 'dropdown resource-dropdown';
+        resourceItem.innerHTML = `<a href="resources.html" class="nav-link">Resources <i class="fas fa-chevron-down"></i></a>
+            <ul class="dropdown-menu">
+                <li><a href="resources.html"><i class="fas fa-book-open"></i> Logistics Resources</a></li>
+                <li><a href="shipping-guide.html"><i class="fas fa-route"></i> Shipping Guide</a></li>
+                <li><a href="faq.html"><i class="fas fa-circle-question"></i> FAQ &amp; Help</a></li>
+            </ul>`;
+        navMenu.insertBefore(resourceItem, navMenu.lastElementChild);
+        resourceItem.querySelector('.nav-link').addEventListener('click', function(e) {
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                e.stopPropagation();
+                resourceItem.classList.toggle('active');
+            }
+        });
+    }
+
+    const serviceMenu = navMenu && navMenu.querySelector('.dropdown:not(.resource-dropdown) .dropdown-menu');
+    if (serviceMenu && !serviceMenu.querySelector('a[href="customs-clearing.html"]')) {
+        serviceMenu.insertAdjacentHTML('beforeend', `<li><a href="customs-clearing.html"><i class="fas fa-passport"></i> Customs Clearing</a></li>
+            <li><a href="fleet-assets.html"><i class="fas fa-truck-ramp-box"></i> Fleet &amp; Assets</a></li>
+            <li><a href="warehousing.html"><i class="fas fa-warehouse"></i> Warehousing</a></li>
+            <li><a href="tracking.html"><i class="fas fa-location-crosshairs"></i> Shipment Tracking</a></li>`);
+    }
+
+    document.querySelectorAll('.footer').forEach(footer => {
+        if (!footer.querySelector('.footer-social')) {
+            const social = document.createElement('div');
+            social.className = 'footer-social';
+            social.innerHTML = `<a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://wa.me/233245359395" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>`;
+            const firstColumn = footer.querySelector('.footer-col');
+            if (firstColumn) firstColumn.appendChild(social);
+        }
+
+        const socialLinks = {
+            Facebook: 'https://www.facebook.com/your-page',
+            Instagram: 'https://www.instagram.com/your-handle',
+            LinkedIn: 'https://www.linkedin.com/company/your-company',
+            TikTok: 'https://www.tiktok.com/@your-handle',
+            WhatsApp: 'https://wa.me/233245359395'
+        };
+        footer.querySelectorAll('.footer-social a').forEach(link => {
+            const label = link.getAttribute('aria-label');
+            if (socialLinks[label]) {
+                link.href = socialLinks[label];
+                link.target = '_blank';
+                link.rel = 'noopener';
+            }
+        });
+
+        footer.querySelectorAll('a[href="#"]').forEach(link => {
+            const label = link.textContent.trim().toLowerCase();
+            if (label.includes('customs')) link.href = 'customs-clearing.html';
+            if (label.includes('warehouse')) link.href = 'warehousing.html';
+        });
     });
     
     // Close mobile menu on escape key
@@ -786,13 +866,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Auto-open after 3 seconds (only once)
-    setTimeout(() => {
-        if (!sessionStorage.getItem('chatOpened')) {
-            toggleChat();
-            sessionStorage.setItem('chatOpened', 'true');
-        }
-    }, 3000);
+    // Chat opens only when the user clicks the toggle.
+    // This preserves a clean first impression and prevents unexpected pop-ups.
     
     // Close on outside click
     document.addEventListener('click', function(e) {
