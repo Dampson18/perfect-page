@@ -1,0 +1,17 @@
+# robots.txt for Perfect Page Freight Logistics
+# https://www.perfectpagefreight.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Disallow admin or private pages
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /backup/
+
+# Sitemap location
+Sitemap: https://www.perfectpagefreight.com/sitemap.xml
+
+# Crawl delay for slow servers
+Crawl-delay: 5
