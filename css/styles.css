@@ -2245,6 +2245,46 @@ button:focus:not(:focus-visible) {
 /* Full-bleed on mobile: the image covers the full screen width edge-to-edge
    rather than sitting inset with padding on either side. */
 @media (max-width: 768px) {
+    .service-detail-page div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    .service-detail-page div[style*="border-radius: var(--radius-lg)"]:has(> img) {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .service-detail-page div[style*="border-radius: var(--radius-lg)"] > img {
+        width: 100% !important;
+        height: clamp(260px, 62vw, 420px) !important;
+        object-fit: cover;
+        display: block;
+    }
+
+    .service-page-grid {
+        grid-template-columns: 1fr !important;
+        gap: 36px !important;
+    }
+
+    .service-page-image {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        border-radius: 0 !important;
+        box-shadow: none !important;
+    }
+
+    .service-page-image img {
+        width: 100% !important;
+        height: clamp(260px, 62vw, 420px) !important;
+        object-fit: cover;
+        display: block;
+    }
+
     .why-choose-list li {
         padding: 14px 16px;
     }
