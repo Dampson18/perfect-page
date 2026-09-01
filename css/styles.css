@@ -8,6 +8,19 @@
    1. CSS VARIABLES & THEME
    ======================================== */
 
+section[style*="padding: 140px"][style*="#0A1628"] {
+    background-image: linear-gradient(rgba(10, 22, 40, 0.86), rgba(26, 58, 92, 0.9)), url("../images/hero-shipping.jpg") !important;
+    background-size: cover;
+    background-position: center;
+}
+
+section[style*="padding: 140px"][style*="#F8FAFC"],
+section[style*="padding: 140px"][style*="#f8fbff"] {
+    background-image: linear-gradient(rgba(248, 250, 252, 0.9), rgba(239, 246, 255, 0.93)), url("../images/hero-shipping.jpg") !important;
+    background-size: cover;
+    background-position: center;
+}
+
 :root {
     /* Primary Colors - Blue Shades */
     --primary-dark: #0A1628;
