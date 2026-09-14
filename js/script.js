@@ -43,6 +43,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     'use strict';
 
+    if (!document.querySelector('link[rel="icon"]')) {
+        const favicon = document.createElement('link');
+        favicon.rel = 'icon';
+        favicon.type = 'image/x-icon';
+        favicon.href = 'images/perfect-page-logo.ico';
+        document.head.appendChild(favicon);
+    }
+
     // Replace the placeholder with the real GA4 measurement ID when ready.
     const analyticsId = 'G-XXXXXXXXXX';
     if (analyticsId !== 'G-XXXXXXXXXX') {
@@ -54,6 +62,143 @@ document.addEventListener('DOMContentLoaded', function() {
         window.gtag = function() { window.dataLayer.push(arguments); };
         window.gtag('js', new Date());
         window.gtag('config', analyticsId);
+    }
+
+    // ========================================
+    // SHIPMENT TRACKING LOOKUP
+    // ========================================
+
+    const trackingForm = document.getElementById('trackingForm');
+    const trackingInput = document.getElementById('trackingReference');
+    const trackingMessage = document.getElementById('trackingMessage');
+    const trackingResult = document.getElementById('trackingResult');
+
+    if (trackingForm && trackingInput && trackingResult) {
+        const shipments = {
+            'PPF-2026-001': {
+                reference: 'PPF-2026-001',
+                status: 'In transit',
+                statusClass: 'status-transit',
+                route: 'Shanghai, China to Tema, Ghana',
+                mode: 'Sea freight',
+                eta: '18 October 2026',
+                updated: '14 September 2026, 09:40 GMT',
+                progress: 68,
+                milestones: [
+                    ['Booking confirmed', '22 August 2026', 'complete'],
+                    ['Cargo received at origin', '25 August 2026', 'complete'],
+                    ['Vessel departed Shanghai', '29 August 2026', 'complete'],
+                    ['In transit to Tema', '14 September 2026', 'current'],
+                    ['Customs clearance and delivery', 'Expected 18 October 2026', 'upcoming']
+                ]
+            },
+            'PPF-2026-002': {
+                reference: 'PPF-2026-002',
+                status: 'Ready for delivery',
+                statusClass: 'status-ready',
+                route: 'Accra to Kumasi, Ghana',
+                mode: 'Land transport',
+                eta: '16 September 2026',
+                updated: '14 September 2026, 11:15 GMT',
+                progress: 88,
+                milestones: [
+                    ['Booking confirmed', '11 September 2026', 'complete'],
+                    ['Cargo collected in Accra', '12 September 2026', 'complete'],
+                    ['Loaded for regional dispatch', '13 September 2026', 'complete'],
+                    ['Ready for delivery', '14 September 2026', 'current'],
+                    ['Delivered to consignee', 'Expected 16 September 2026', 'upcoming']
+                ]
+            }
+        };
+
+        const whatsappUrl = (reference) => `https://wa.me/233245359395?text=${encodeURIComponent(`Hi Perfect Page Freight, please help me track shipment ${reference}.`)}`;
+
+        function showTrackingMessage(message, type) {
+            trackingMessage.textContent = message;
+            trackingMessage.className = `tracking-message ${type || ''}`;
+        }
+
+        function renderShipment(shipment) {
+            trackingResult.hidden = false;
+            trackingResult.innerHTML = `
+                <div class="tracking-result-header">
+                    <div>
+                        <span class="tracking-result-label">Shipment reference</span>
+                        <h3>${shipment.reference}</h3>
+                    </div>
+                    <span class="tracking-status ${shipment.statusClass}"><span></span>${shipment.status}</span>
+                </div>
+                <div class="tracking-summary">
+                    <div><span>Route</span><strong>${shipment.route}</strong></div>
+                    <div><span>Service</span><strong>${shipment.mode}</strong></div>
+                    <div><span>Estimated arrival</span><strong>${shipment.eta}</strong></div>
+                    <div><span>Last updated</span><strong>${shipment.updated}</strong></div>
+                </div>
+                <div class="tracking-progress-wrap">
+                    <div class="tracking-progress-label"><span>Shipment progress</span><strong>${shipment.progress}%</strong></div>
+                    <div class="tracking-progress"><span style="width: ${shipment.progress}%"></span></div>
+                </div>
+                <div class="tracking-timeline">
+                    ${shipment.milestones.map(([label, date, state]) => `
+                        <div class="tracking-milestone ${state}">
+                            <span class="milestone-dot"><i class="fas ${state === 'complete' ? 'fa-check' : state === 'current' ? 'fa-location-dot' : 'fa-clock'}"></i></span>
+                            <div><strong>${label}</strong><small>${date}</small></div>
+                        </div>
+                    `).join('')}
+                </div>
+                <div class="tracking-result-actions">
+                    <button type="button" class="btn btn-secondary" data-copy-reference="${shipment.reference}"><i class="fas fa-copy"></i> Copy reference</button>
+                    <a class="btn btn-primary" href="${whatsappUrl(shipment.reference)}" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> Ask dispatch</a>
+                </div>
+            `;
+            showTrackingMessage('Shipment record found. Status is based on the latest available update.', 'success');
+        }
+
+        function lookupShipment(reference) {
+            const normalizedReference = reference.trim().toUpperCase();
+            if (!normalizedReference) {
+                trackingResult.hidden = true;
+                showTrackingMessage('Enter a shipment reference to check its status.', 'error');
+                trackingInput.focus();
+                return;
+            }
+
+            trackingInput.value = normalizedReference;
+            const shipment = shipments[normalizedReference];
+            if (shipment) {
+                renderShipment(shipment);
+                const url = new URL(window.location.href);
+                url.searchParams.set('reference', normalizedReference);
+                window.history.replaceState({}, '', url);
+            } else {
+                trackingResult.hidden = true;
+                showTrackingMessage('We could not find a public record for that reference. Contact dispatch for a live update.', 'error');
+                trackingMessage.insertAdjacentHTML('beforeend', ` <a href="${whatsappUrl(normalizedReference)}" target="_blank" rel="noopener">Message dispatch on WhatsApp</a>`);
+            }
+        }
+
+        trackingForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            lookupShipment(trackingInput.value);
+        });
+
+        document.querySelectorAll('[data-tracking-demo]').forEach((button) => {
+            button.addEventListener('click', () => lookupShipment(button.dataset.trackingDemo));
+        });
+
+        trackingResult.addEventListener('click', async (event) => {
+            const copyButton = event.target.closest('[data-copy-reference]');
+            if (!copyButton) return;
+            try {
+                await navigator.clipboard.writeText(copyButton.dataset.copyReference);
+                copyButton.innerHTML = '<i class="fas fa-check"></i> Copied';
+            } catch (error) {
+                showTrackingMessage('Copy was not available. Select the reference manually.', 'error');
+            }
+        });
+
+        const initialReference = new URLSearchParams(window.location.search).get('reference');
+        if (initialReference) lookupShipment(initialReference);
     }
     
     // ========================================
@@ -658,8 +803,8 @@ document.addEventListener('DOMContentLoaded', function() {
         'time': 'Delivery times vary by service:\n\n- Air: 2-5 business days\n- Sea: 2-6 weeks\n- Land: 1-7 days\n\nNeed something urgent? Air freight is your best option.',
         
         // Tracking
-        'track': 'Shipment Tracking\n\nWe are currently developing a real-time tracking system.\n\nIn the meantime, you can:\n- Contact us directly\n- Email: info@perfectpagefreight.com\n- Call: +233 24 535 9395',
-        'tracking': 'Tracking Information\n\nOur tracking system is coming soon. Until then:\n\nEmail: info@perfectpagefreight.com\nPhone: +233 24 535 9395\nWhatsApp: +233 24 535 9395',
+        'track': 'Shipment Tracking\n\nUse the Shipment Tracking page to check an available reference and view its latest milestone. For live records not listed there, send your booking or container number to WhatsApp dispatch.\n\nWhatsApp: +233 24 535 9395',
+        'tracking': 'Tracking Information\n\nYou can check a shipment reference on our tracking page, view its progress, and ask dispatch for a live confirmation when needed.\n\nWhatsApp: +233 24 535 9395',
         
         // Contact
         'contact': 'Contact Us\n\nEmail: info@perfectpagefreight.com\nPhone: +233 24 535 9395\nWhatsApp: +233 24 535 9395\nLocation: Accra, Ghana\n\nWe are available Monday-Friday, 8am-6pm.',

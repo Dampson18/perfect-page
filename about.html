@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/perfect-page-logo.ico">
     <title>About Us - Perfect Page Freight Logistics</title>
     <meta name="description" content="Learn about Perfect Page Freight Logistics, our mission, team, and experience in freight forwarding across Ghana and worldwide.">
     <meta name="keywords" content="about freight forwarding, logistics company Ghana, freight team, shipping experts, Perfect Page Freight">
@@ -193,6 +194,23 @@
             gap: 30px;
             text-align: center;
         }
+
+        .company-profile-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-why-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
         
         .stats-row .stat {
             padding: 20px;
@@ -216,6 +234,16 @@
         }
         
         @media (max-width: 768px) {
+            .company-profile-grid {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .about-why-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
             .about-mission {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -350,7 +378,7 @@
     <main>
         
         <!-- Page Hero -->
-        <section style="padding: 140px 0 70px; background: linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%);">
+        <section class="page-hero-banner" style="--hero-image: url('images/about-hero.jpg'); padding: 140px 0 70px;">
             <div class="container">
                 <div style="text-align: center; max-width: 700px; margin: 0 auto;">
                     <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 6px 18px; border-radius: 50px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px;">Who We Are</span>
@@ -376,7 +404,7 @@
         <!-- Company Profile -->
         <section style="padding: 60px 0;">
             <div class="container">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto;">
+                <div class="company-profile-grid">
                     <div>
                         <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px;">Our Story</span>
                         <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-bottom: 16px;">Your Trusted Freight Partner Since <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">2015</span></h2>
@@ -444,7 +472,7 @@
                     <span style="display: inline-block; background: rgba(59,130,246,0.1); color: var(--primary-light); padding: 4px 14px; border-radius: 50px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Why Us</span>
                     <h2 style="font-size: 32px; font-weight: 800; color: var(--primary-dark); margin-top: 8px;">Why Choose <span style="background: var(--gradient-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">Perfect Page</span> Freight?</h2>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; max-width: 1000px; margin: 0 auto;">
+                <div class="about-why-grid">
                     <div style="display: flex; gap: 16px; padding: 20px; background: var(--white); border-radius: var(--radius-md); border: 1px solid var(--gray-200); transition: var(--transition-base);">
                         <div style="width: 48px; height: 48px; min-width: 48px; background: rgba(59,130,246,0.08); border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--primary-light);">
                             <i class="fas fa-globe-africa"></i>

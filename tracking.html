@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="images/perfect-page-logo.ico">
     <title>Shipment Tracking | Perfect Page Freight Logistics</title>
     <meta name="description" content="Track your shipment with Perfect Page Freight Logistics via WhatsApp and direct dispatch updates. Fast cargo status updates for customers in Ghana and beyond.">
     <meta name="robots" content="index, follow">
@@ -45,7 +46,7 @@
 </header>
 
 <main>
-    <section style="padding: 140px 0 60px; background: linear-gradient(135deg, #f8fbff 0%, #eef6ff 100%);">
+    <section class="page-hero-banner" style="--hero-image: url('images/hero-shipping.jpg'); padding: 140px 0 60px;">
         <div class="container">
             <div style="max-width: 760px; margin: 0 auto; text-align: center;">
                 <span class="section-tag"><span class="line"></span> live updates <span class="line"></span></span>
@@ -60,12 +61,16 @@
             <div class="tracking-box">
                 <span class="section-tag" style="background: rgba(255,255,255,0.08); color: #fff; border-color: rgba(255,255,255,0.12);"><span class="line"></span> tracking <span class="line"></span></span>
                 <h2 class="section-title" style="color: white; margin-top: 8px;">Check the latest shipment status</h2>
-                <p style="max-width: 620px; color: rgba(255,255,255,0.8);">Enter your container number, booking ID, or reference and our team can confirm the movement of your shipment immediately.</p>
-                <form action="https://wa.me/233245359395" method="get" target="_blank">
-                    <input type="text" name="text" placeholder="Enter tracking number or booking reference" aria-label="Shipment reference" />
-                    <button type="submit">Track on WhatsApp</button>
+                <p style="max-width: 620px; color: rgba(255,255,255,0.8);">Enter your shipment reference for the latest available milestone. For live records not shown here, send the same reference to our dispatch team on WhatsApp.</p>
+                <form id="trackingForm" novalidate>
+                    <label class="sr-only" for="trackingReference">Shipment reference</label>
+                    <input id="trackingReference" type="text" name="reference" placeholder="e.g. PPF-2026-001" aria-label="Shipment reference" autocomplete="off" required />
+                    <button type="submit"><i class="fas fa-magnifying-glass"></i> Check Status</button>
                 </form>
+                <p class="tracking-form-note"><i class="fas fa-circle-info"></i> Try <button type="button" class="tracking-demo-link" data-tracking-demo="PPF-2026-001">PPF-2026-001</button> to view a sample shipment.</p>
+                <div id="trackingMessage" class="tracking-message" role="status" aria-live="polite"></div>
             </div>
+            <div id="trackingResult" class="tracking-result" aria-live="polite" hidden></div>
         </div>
     </section>
 
