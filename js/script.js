@@ -1,4 +1,67 @@
 // ========================================
+// Global theme management
+// ========================================
+(function () {
+    'use strict';
+
+    var storageKey = 'perfect-page-theme';
+
+    function getPreferredTheme() {
+        var savedTheme = localStorage.getItem(storageKey);
+        if (savedTheme === 'dark' || savedTheme === 'light') return savedTheme;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(mode, persist) {
+        var isDark = mode === 'dark';
+        document.body.classList.toggle('dark-mode', isDark);
+        document.documentElement.classList.toggle('dark', isDark);
+        document.documentElement.style.colorScheme = isDark ? 'dark' : 'light';
+
+        var themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.setAttribute('content', isDark ? '#091520' : '#0A1628');
+
+        document.querySelectorAll('.theme-toggle').forEach(function (button) {
+            button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            button.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+            button.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        });
+
+        if (persist) localStorage.setItem(storageKey, mode);
+    }
+
+    function ensureToggle(container) {
+        if (container.querySelector('.theme-toggle')) return;
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'theme-toggle';
+        button.innerHTML = '<i class="fas fa-moon" aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i>';
+        var hamburger = container.querySelector('.hamburger');
+        if (hamburger) container.insertBefore(button, hamburger);
+        else container.appendChild(button);
+    }
+
+    document.querySelectorAll('.nav-actions').forEach(ensureToggle);
+    applyTheme(getPreferredTheme(), false);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.nav-actions').forEach(ensureToggle);
+        applyTheme(getPreferredTheme(), false);
+    });
+
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest('.theme-toggle');
+        if (!button) return;
+        var next = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+        applyTheme(next, true);
+    });
+
+    window.addEventListener('storage', function (event) {
+        if (event.key === storageKey) applyTheme(getPreferredTheme(), false);
+    });
+})();
+
+// ========================================
 // PERFECT PAGE FREIGHT - COMPLETE JAVASCRIPT
 // ========================================
 
@@ -1028,4 +1091,63 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize
     initChatbot();
     
+});
+// ==========================================================
+// Global theme, reveal, media, and interaction enhancements
+// ==========================================================
+document.addEventListener('DOMContentLoaded', function () {
+    'use strict';
+
+    const revealTargets = document.querySelectorAll(
+        '.feature-card,.process-card,.compliance-card,.fleet-card,.mission-card,'+
+        '.resource-card,.service-card,.service-feature,.gallery-item,.gallery-video-card,'+
+        '.testimonial-card,.tracking-card,.contact-ops-card,.coverage-wrap,.operations-feature-grid'
+    );
+
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const revealObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold:0.12, rootMargin:'0px 0px -40px' });
+
+        revealTargets.forEach(function (element, index) {
+            element.classList.add('reveal-ready');
+            element.style.transitionDelay = Math.min(index % 4, 3) * 70 + 'ms';
+            revealObserver.observe(element);
+        });
+    }
+
+    document.querySelectorAll('.gallery-item,.service-card,.service-feature,.resource-card,.mission-card,.fleet-card,.compliance-card').forEach(function (element) {
+        element.classList.add('media-shine');
+    });
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.querySelectorAll('.gallery-item img,.service-card-image,.service-feature-image,.mission-card-photo,.image-card-photo').forEach(function (image) {
+            image.addEventListener('load', function () { image.closest('.media-shine')?.classList.add('media-loaded'); });
+        });
+
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.scrollY;
+            document.querySelectorAll('.page-hero-banner').forEach(function (hero) {
+                hero.style.backgroundPosition = 'center ' + (50 + Math.min(scrollTop * 0.02, 8)) + '%';
+            });
+        }, { passive:true });
+    }
+
+    document.querySelectorAll('img').forEach(function (image) {
+        image.addAttribute?.('decoding', 'async');
+        if (!image.hasAttribute('decoding')) image.setAttribute('decoding', 'async');
+        if (!image.hasAttribute('loading') && !image.classList.contains('logo')) image.setAttribute('loading', 'lazy');
+    });
+
+    window.addEventListener('resize', function () {
+        if (window.innerWidth > 768) {
+            document.body.classList.remove('no-scroll');
+            document.querySelectorAll('.nav-menu.active').forEach(function (menu) { menu.classList.remove('active'); });
+            document.querySelectorAll('.hamburger.active').forEach(function (button) { button.classList.remove('active'); });
+        }
+    }, { passive:true });
 });
